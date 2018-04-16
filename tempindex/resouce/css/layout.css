@@ -1,0 +1,247 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html,body{min-width:1250px;}
+.cms_content,.w{width:1250px; margin:0 auto;}/*容器宽度*/
+.cms_header{height:65px; background:#4c4c4c;}
+.cms_logo{float:left;margin-top: 13px;}
+/*下拉菜单*/
+.cms_nav{width:auto;float:left;position:relative; z-index:999;height:65px;line-height:65px;margin-left: 78px;}
+.cms_nav ul{margin:0 auto;}	
+.cms_nav ul li{float:left;position: relative;text-align:center;width:auto;margin:0px 12px;font-size: 16px;color:#fff;}	
+.cms_nav ul li span{cursor: pointer;padding:0 30px;display: block;}
+.cms_nav ul li a{display:block;padding:0 30px;color:#fff;}
+
+.cms_nav ul li ul{left:0px; position: absolute;width:100%;top: 65px;display: none;opacity: 0.6;padding-bottom: 10px;}
+.cms_nav ul li li{float:none;width:100%;height:40px;line-height:40px;margin:0px;}
+.cms_nav ul li li a{margin:0px 5px;padding:0px;border-bottom: 1px solid #828282}
+/*.cms_nav ul li li a{background:#FFF;border-top:1px #dadada solid; }
+.cms_nav ul li li ul{left:100%;top:0px;}*/
+
+.cms_nav ul li a:hover{color:#00ccff;}
+.cms_nav ul li:hover ul{display: block;background: #000000;}
+.cms_nav ul li:hover span {background: #1e1e1e}
+/*.cms_nav ul li:hover a:hover{color:#fff;background-color: gray;}
+.cms_nav .current{background-color:gray; color:#fff;}	
+.cms_nav .leave{background-color:none; color:#333;}*/
+/* Holly Hack for IE \*/
+* html .cms_nav ul li { float: left; height: 1%; }
+* html .cms_nav ul li a { height: 1%; }
+
+/*焦点图样式*/
+.cms_banner{ width:100%;  height:783px; position:relative; min-width:1000px; overflow: hidden;}
+.cms_banner .bd{ position:relative; z-index:0;  }
+.cms_banner .bd ul{ width:100% !important;  }
+.cms_banner .bd li{ width:100% !important;  height:783px; overflow:hidden; text-align:center;  }
+.cms_banner .bd li a{ display:block; height:783px; }
+
+.cms_banner .hd{ width:100%;  position:absolute; z-index:1; bottom:0; left:0; height:30px; line-height:30px; text-align:center;}
+.cms_banner .hd ul{ text-align:center;  padding-top:5px;  }
+.cms_banner .hd ul li{ cursor:pointer; display:inline-block; *display:inline; zoom:1; width:12px; height:12px; margin:5px; background:url(../images/icons.png) -20px -80px; overflow:hidden; line-height:9999px; }
+.cms_banner .hd ul .on{ background-position:0px -80px; }
+
+.cms_banner .prev,.cms_banner .next{ position:absolute; z-index:1; display:block; width:30px; height:50px; top:50%; margin-top:-25px; left:20px;  background:url(../images/icons.png) 0 0 no-repeat; cursor:pointer;  filter:alpha(opacity=60);opacity:0.6;  }
+.cms_banner .next{ left:auto; right:30px; background-position:-51px 0; }
+.cms_banner .prev:hover,.cms_banner .next:hover{ filter:alpha(opacity=100);opacity:1; }
+
+/*产品切换样式*/ 
+.hot-img{width:1251px;overflow: hidden;margin: 40px auto;}
+.hot-img ul{width:1254px;}
+.hot-img li{ float:left;margin-right: 3px;}
+
+/*页脚*/   
+.cms_footer{background:#4c4c4c;color:#ffffff; padding:50px 0px;}
+.cms_footer a{color:#ffffff;}
+.sitemap{float: left;}
+.sitemap dl{float: left;margin-right: 70px;}
+.sitemap dt{font-size: 18px;margin-bottom: 10px;}
+.sitemap dd a{display: block; line-height: 180%;}
+.footer-content{float: right}
+.footer-content .ml{float: left;margin-right: 5px;position: relative;height: 115px;}
+.footer-content h1{font-size: 22px;text-align: right;}
+.footer-content h3{font-size: 15px; text-align: right;}
+.footer-content .ml a{position: absolute;right: 0px;bottom: 0px;}
+.footer-content .mr{float: right}
+.footerinfo{
+	border-top:1px solid #707070;
+	margin-top: 40px;padding-top:20px;
+}
+  
+/*内容页*/
+.page_banner{height:410px;}
+.cms_side{float:left;width:190px;}/*左侧导航页*/
+.cms_title{margin:50px 0px 25px 0px;}
+.cms_title h3{ font-size:24px;color:#666666;position: relative;padding-left: 10px;}
+.cms_title h3 i{display: inline-block;width: 6px;height: 23px;background: #00ccff; position: absolute;left:0px; top: 5px;}
+.cms_title h4{font-size: 16px;color:#d1d1d1;}
+.cms_side ul li{position: relative;height: 45px;}
+.cms_side ul li a{display:block; font-size:16px;color:#666666; text-align:left;padding:12px 0px;}
+.cms_side ul li .hover{color:#00ccff;position: absolute;width:199px; background: url(../images/menu.png) no-repeat center right;}
+.cms_side ul li .hover:after{width: 0px;
+    height: 0px;
+    border-top: 5px solid transparent;
+    border-left: 10px solid red;
+    border-bottom: 5px solid transparent;display: block;}
+
+.cms_main{float:left;width:1060px;}/*右侧内容页*/
+.cms_main-content{padding:50px; min-height:400px;background: #e6e6e6;}
+.newtit{font-size:14px; font-weight:bold; margin-bottom:10px; text-align:center;}
+.newtim{margin-bottom:20px;text-align:center;}
+.txtinfo p{margin-bottom:12px;line-height:160%;font-size: 16px;}
+
+/**/
+.faq .fsq-title{
+	font-size: 30px;text-align: center;margin-bottom: 65px;
+}
+.faq dl{margin-bottom: 70px;}
+.faq dt{font-size: 20px;font-weight: bold;margin-bottom: 7px;}
+.faq dd{font-size:16px; line-height: 160%;padding-left: 27px; position: relative;} 
+.faq dd .a{ position: absolute; left:0px;top:0px;}
+/*新闻列表*/
+.news-box{width:100%;height:100%;background: #e6e6e6;padding:60px 0;}
+.news-box .news-list-title{
+	font-size: 30px;text-align: center;margin-bottom: 25px;
+}
+.news-box dl{margin-top:40px;border-bottom: 1px solid #fff;}
+.news-box dt{margin-bottom: 15px;}
+.news-box .news_tit{font-size: 24px;display: inline-block;float:left;}
+.news-box .news_time{display: inline-block;float:right; line-height: 31px;}
+.news-box .news_tit:hover{}
+.news-box .news_info{padding-bottom:40px;border-bottom: 1px solid #c7c7c7;}
+
+.news-info{margin-top:60px;}
+.news-info_tit{font-size: 24px;text-align: center;margin-bottom: 30px;}
+.news-info_sum{text-align: center;}
+.news-info_sum span{padding:0 25px;text-align: center;display: inline-block; }
+.news-info_con{margin-top: 60px;}
+
+ /*产品中心*/
+.cms_product-box{}
+.cms_product-box li{float:left;display:block; margin:0px 20px 20px 0px;width:174px;}
+.cms_product-box .img_box{width:174px;height:174px;text-align:center;display:table-cell;vertical-align:middle;}
+.cms_product-box a:hover{}
+.cms_product-box .pro_list-name{line-height: 25px;text-align:center;}
+.cms_product-box a img{width:174px;height:174px;}
+.cms_product-box .nor{margin-right:0px;}
+
+/**/
+.about-a{padding:40px 0px;width:1000px;margin:0 auto;}
+.about-b ul{overflow: hidden;zoom:1;width:1032px;margin:-50px auto 60px auto;}
+.about-b li{float: left; color: #fff; background: url(../images/icon-a.jpg) no-repeat center center; margin:0 25px;width:208px;height:282px; overflow: hidden; text-align:center;}
+.about-b li h3{margin-top: 88px;font-size: 30px; margin-bottom: 13px;}
+.about-b li h4{ line-height: 160%;}
+.about-c {padding:55px 0px;background: #f0f0f0;}
+.about-img-tit{text-align: center; margin-bottom: 50px;}
+.about-d {padding:55px 0px; margin-bottom:60px; font-size: 16px; color:#9b9b9b; line-height: 160%;}
+
+
+/*电子书包*/ 
+.subnav{ height:64px; width:100%; background:#f4f4f4}
+.subnav ul{position:relative}
+.subnav ul li a{ line-height:64px; font-size:24px; }
+.subnav .button{ background:#ff7800; width:122px; height:38px; position:absolute ;right:5px; top:12px; text-align:center}
+.subnav .button a{ line-height:38px; color:#fff; display:block}
+.content{ position:relative; overflow:hidden}
+
+.content ul li img{width:1920px;position:relative;left:50%;margin-left:-960px;}
+.content .list1{ } 
+
+.cms_main_w{1250px; margin:0 auto}
+
+
+/*相关下载*/
+.cms_title{ text-align:center; font-size:20px;}
+.container_1 ul li{ float:left; width:416px;text-align: center;margin-bottom:40px;}
+.container_1 ul li img{height:256px;}
+.container_1_t{     text-align: center;
+    line-height: 54px;
+    font-size: 22px;
+}
+
+/*下载详细*/
+.download{ margin-top:80px;}
+.download_product{ float:left}
+/* 本例子css */
+.slideTxtBox{ float:left;width:830px; text-align:left; margin-left:50px;}
+.slideTxtBox .hd{ height:63px; line-height:63px; background:#e6e6e6; padding:0 10px 0 0px;   position:relative; }
+.slideTxtBox .hd ul{ float:left;  position:absolute;   height:32px;   }
+.slideTxtBox .hd ul li{ float:left; padding:0 25px; cursor:pointer;  }
+.slideTxtBox .hd ul li.on{ height:61px;  background:#fff;  border-bottom:2px solid #fff; }
+.slideTxtBox .bd ul{ padding:15px 30px;  zoom:1; background:#fff  }
+.slideTxtBox .bd li{ line-height:24px;min-height:180px;    }
+.slideTxtBox .bd li .date{ float:right; color:#999;  }
+
+.slideTxtBox .bd ul li span{ float:right; width:174px; height:63px; background:#00ccff; font-size:22px ;  line-height:62px; text-align:center; margin-top:40px;}
+.slideTxtBox .bd ul li span a{ color:#fff}
+.slideTxtBox .bd ul .li_h p{ float:left; width:570px;margin-top: 20px;}
+.slideTxtBox .bd .li_c_body{margin-top:20px; line-height: 180%;height:250px;overflow: hidden;}
+.slideTxtBox .bd .li_c_body p{margin-bottom:0px;}
+
+.li_t{border-bottom:1px solid #ccc;  font-size:22px; padding-bottom:10px;}
+.slideTxtBox .li_more{text-align: right;margin-bottom: 20px;}
+.li_more a{ color:#00ccff; display: inline-block; margin-top:20px;}
+.big-link { display:block;  text-align: center; font-size: 18px;  }
+.none{float: left;width: 630px!important;overflow-y: scroll;height: 450px;margin-left: 20px;margin-top: 10px;line-height: 180%;}
+.none p{margin-bottom: 0px;}
+.line{border-bottom:1px solid #ccc;}
+
+/*	--------------------------------------------------
+	Reveal Modals
+	-------------------------------------------------- */
+		
+	.reveal-modal-bg { 
+		position: fixed; 
+		height: 100%;
+		width: 100%;
+		background:url(../images/bg.png) repeat; 
+	
+		z-index: 100;
+		display: none;
+		top: 0;
+		left: 0; 
+		
+		background-color: rgba(0, 0, 0, 0.2)
+	
+		}
+	
+	.reveal-modal {
+		visibility: hidden;
+		top: 200px; 
+		left: 50%;
+		margin-left: -300px;
+		width: 655px;
+		height:525px;
+		background: #eee url(../images/modal-gloss.png) no-repeat -200px -80px;
+		position: absolute;
+		z-index: 101;
+		
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		}
+		
+	.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
+	.reveal-modal.medium 		{ width: 400px; margin-left: -240px;}
+	.reveal-modal.large 		{ width: 600px; margin-left: -340px;}
+	.reveal-modal.xlarge 		{ width: 800px; margin-left: -440px;}
+	
+	.reveal-modal .close-reveal-modal {
+		font-size: 22px;
+		line-height: .5;
+		position: absolute;
+		top: 8px;
+		right: 11px;
+		color: #aaa;
+		text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+		font-weight: bold;
+		cursor: pointer;
+		}
+.reveal-modal_t { font-size:18px; margin: 10px 20px;} 
+		
+.li_c table td{ padding:5px 0px; height:34px;line-height: 34px;}
+.blue{ color:#00ccff}
+.blue a{ color:#00ccff}
+
+

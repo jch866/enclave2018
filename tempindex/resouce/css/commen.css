@@ -1,0 +1,89 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* 注册 登录 密码 留言 */
+.login,.register,.feedback{padding:10px;}
+.item{margin-bottom:10px; position:relative;padding-left:100px;line-height:30px; }/*登录注册等表单的行*/
+.item h3{
+	width:100px; 
+	text-align:right;
+	position:absolute;left:0px;top:0px;
+	}
+.item span{
+	margin-left:5px;
+	color:#969696;
+	}
+.item strong{float:left; padding-left:5px;}	
+.item input,.item .birth{
+	margin-left:15px;
+	margin-right:2px;
+	}
+.item .birth{height:35px;line-height:35px;}
+.item label{padding-top:10px;}
+.item select{border:1px #dadada solid;border-radius:3px;height:20px; line-height:20px;}
+.item span a{ color:#f00;}
+input.text{
+	height:28px;
+	line-height:28px; 
+	padding-left:3px;
+	border:1px #dadada solid;
+	border-radius:3px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	}
+.w1{width:250px;}
+.w2{width:100px;}
+.wnum{width:50px;}
+.wtxt{width:150px;}
+.check-code{float:left; margin-left:10px; height:35px; line-height:35px;}
+.check-code img{display:block;height:35px; float:left;}
+.check-code span{ float:left;}
+.check-code a{color:#F00; float:left;}
+.check-code a:hover{ text-decoration:underline; cursor:pointer;}
+.btn-sure{
+	width:100px; 
+	height:34px; 
+	line-height:34px; 
+	background:#09F; 
+	color:#fff; 
+	font-family:"微软雅黑"; 
+	margin-left:100px;
+	border:1px #09F solid;
+	border-radius:3px;
+	letter-spacing:5px;
+	}
+.btn-sure:hover,.btn-sure:active{ 
+    background:#06F;
+	border:1px #06F solid;
+	border-radius:3px; 
+	color:#fff; 
+	cursor:pointer;
+	}
+.txtarea{
+	width:400px;
+	min-height:100px;
+	padding:5px;
+	border:1px #dadada solid;
+	border-radius:3px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	 margin-left:15px;
+	}
+.feedback{ padding:20px 0px;}
+/* 注册 登录 密码 留言 结束 */
+.login{width:440px; margin:0 auto;}
+.login .tit,.register .tit{ font-size:20px; text-align:center; font-weight:bold; margin:20px 0px;}
+.register{width:500px; margin:0 auto;}
+/*分页*/
+.cms_page,.cms_page-title{ padding:15px 0px; text-align:center;}
+.cms_page{margin-top: 60px;}
+.cms_page a{padding:1px 7px; margin:3px;color:#666666;border:1px #dadada solid;font-size: 18px;}
+.cms_page a:hover{color:#fff; background:#4c4c4c; padding:2px 8px; border:none;}
+.ipage{}
+
+
+
+a.cms_page-current{ padding:2px 8px;border:0; background:#4c4c4c; color:#fff;}
+.cms_page-title a{ display:block;}
+.cms_page-title a:hover{ color:#F00; text-decoration:underline;}
+.userconlist{ margin-top:20px;}
+.userconlist li{ line-height:30px; border-bottom:1px dashed #d5d5d5;}

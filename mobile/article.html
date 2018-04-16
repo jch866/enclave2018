@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>飞地 - 文艺青年的高品质文学艺术阅读社区</title>
+    <meta name="keywords" content="飞地,飞地app,飞地官网,飞地书局,诗歌,现代诗歌,经典诗歌,阅读,经典阅读,阅读软件,文学,现当代文学,文学作品,艺术,当代艺术,艺术作品,文艺,文艺青年,文艺生活,优质文艺app">
+    <meta name="description" content="飞地是一个汇聚当下最优秀创作者的阅读APP，为你开启文艺社区新旅程。每天推出精选内容，诗歌、文学、艺术、电影、音乐等，带给你精神上的饱满体验。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/main_wap.css">
+    <!-- <link rel="stylesheet" href="../css/query_wap.css"> -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../js/jquery-3.1.0.min.js"></script>
+
+</head>
+<body>
+ <header class="mdetail_head">
+        <div class="head_wrap">
+        <div class="art_logo">
+            <a href="index.html"><img src="../img/logo_black.svg" alt=""></a>
+        </div>
+        <a href="javascript:void(0)" class="downApp" id='downApp'>下载APP</a>
+        </div>
+    </header>
+    <article class="shareArt ">
+        <div class="padding m_details" id="articleCon">
+            <!-- <div class="header">
+                <h1>托马斯 · 伯恩哈德：人爱动物，因为他们甚至没有能力爱自己</h1>
+                <div class="author">胡桑·
+                    <time>两个月前</time>
+                </div>
+            </div> -->
+            <!-- content -->
+        </div>
+    </article>
+    <a class="downBtn" href="#">下载飞地App阅读更多</a>
+    <div class="recommendWrap">
+        <div class="m_recommend">
+            <h3>推荐阅读</h3>
+            <ul>
+                <!-- <li>
+                    <img src="../img/article.png" alt="">
+                    <div class="summary">
+                        <h2>旧梦与新城 | 早晚都会，这样或者那样</h2>
+                        <p>音乐却是这样起来的。……</p>
+                         <div>
+                            <p><span class="mark">生活岛屿</span>苏晓奇</p>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <footer class="foot">
+        <a href="about.html">关于飞地</a>
+        <a href="about.html?tab=4">联系我们</a>
+        <a href="about.html?tab=5">加入飞地</a>
+        <a href="about.html?tab=5">成为作者</a>
+        <a href="about.html?tab=3">文艺活动</a>
+    </footer>
+     
+	<script>
+	$(function() {
+        url = encodeURIComponent(location.href);
+        url = url.replace("55555", "enclave");
+	console.log(url);
+        $.ajax({
+            type: "get",
+            url: "https://app.enclavebooks.cn/v1_4/wxShare?url=" + url,
+            dataType: "jsonp",
+            jsonp: "callback",
+            jsonpCallback: "success_jsonpCallback",
+            success: function(data) {
+                wx.config({
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+                });
+                wx.ready(function() {
+                var shareData = {
+                    title: data.title,
+                    desc: data.desc,
+                    link: data.url,
+                    imgUrl: data.imgUrl
+                };
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+        });
+            },
+            error: function(data) {
+		console.log(data);
+            }
+        });
+    });
+	</script>
+
+    <script src="../js/main.min.js"></script>
+    
+</body>
+</html>

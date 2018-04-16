@@ -1,0 +1,130 @@
+@media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){/* 兼容iphone5 */}
+@media only screen and (max-device-width :480px){ }
+@media only screen and (min-device-width :481px){ }
+@media only screen and (min-device-width :600px){/*  body{background: black} */}
+@media screen and (-webkit-min-device-pixel-ratio : 2) {
+    .head .logo img,.introduce img{width: 110px;height: 44px;}
+    .appDown li img{width: 200px;height: 60px;}
+    .share>ul>li img{width: 44px;height: 44px;}
+    .head .arrow img{width: 58px;height:32px;}
+    .head .arrow{width: 58px;height:48px; margin-left: -29px;}
+    .tel,.email,.address{background-size:18px 18px}
+    .contact>span{padding: 4px 0 4px 24px;}
+
+    .shareHead .logoCon .leftTitle h2{font-size:14px;  }  
+    .shareHead .logoCon .leftTitle p{ font-size:11px;  }      
+    #articleCon .header h1{font-size:23px;}
+    #articleCon .header .author{font-size: 16px;}
+    #articleCon p,#articleCon span,#articleCon blockquote,#articleCon blockquote p{font-size: 16px;}
+    #articleCon h3{font-size: 20px;}
+    #articleCon h4{font-size: 14px;}
+    #articleCon ol li,#articleCon ul li{ font-size: 16px;}
+
+}
+/* 5 */
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio : 2) {
+    /* body{background: pink} */
+    .head .title_down{height: 375px;}
+    .head .title_down h1{  font-size: 42px;}
+    .head .title_down h2{  font-size: 24px;}
+    .introduce p,.contact>span,.brand_app li,.footBottom,#articleCon span{font-size: 16px;}
+    .brand_app h3{font-size: 22px;}
+
+    .shareHead .logoCon .leftTitle h2{font-size:14px;  }  
+    .shareHead .logoCon .leftTitle p{ font-size:11px;  }    
+    #articleCon .header h1{font-size:24px;}
+    #articleCon .header .author{font-size: 15px;}
+    #articleCon p,#articleCon span,#articleCon blockquote,#articleCon blockquote p{font-size: 16px;}
+    #articleCon h3{font-size: 18px;}
+    #articleCon h4{font-size: 14px;}
+    #articleCon ol li,#articleCon ul li{ font-size: 16px;}
+}
+/*6 mate7*/
+@media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){ 
+    /* body{background: red} */
+    .head .title_down{height: 360px;}
+    .head .title_down h1{  font-size: 44px;}
+    .head .title_down h2{  font-size: 24px;}
+    .introduce p,.contact>span,.brand_app li,.footBottom,#articleCon span{font-size: 16px;}
+    .brand_app h3{font-size: 18px;}
+
+    .shareHead .logoCon .leftTitle h2{font-size:14px;  }  
+    .shareHead .logoCon .leftTitle p{ font-size:11px;  }    
+    #articleCon .header h1{font-size:24px;}
+    #articleCon .header .author{font-size: 15px;}
+    #articleCon p,#articleCon span,#articleCon blockquote,#articleCon blockquote p{font-size: 16px;}
+    #articleCon h3{font-size: 20px;}
+    #articleCon h4{font-size: 14px;}
+    #articleCon ol li,#articleCon ul li{ font-size: 16px;}
+
+}
+
+/*6+*/
+@media (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
+     /* body{background: yellow} */
+    .head .title_down{height: 375px;}
+    .head .title_down h1{  font-size: 48px;}
+    .head .title_down h2{  font-size: 24px;}
+    .introduce p,.contact>span,.brand_app li,.footBottom{font-size: 18px;}
+    .brand_app h3{font-size: 22px;}
+
+
+    .shareHead .logoCon .leftTitle h2{font-size:14px;  }  
+    .shareHead .logoCon .leftTitle p{ font-size:11px;  }    
+    #articleCon .header h1{font-size:24px;}
+    #articleCon .header .author{font-size: 15px;}
+    #articleCon p,#articleCon span,#articleCon blockquote,#articleCon blockquote p{font-size: 16px;}
+    #articleCon h3{font-size: 20px;}
+    #articleCon h4{font-size: 14px;}
+    #articleCon ol li,#articleCon ul li{ font-size: 16px;}
+
+
+}
+/* 横屏 */
+@media screen and  (orientation: landscape){
+    .head .title_down{ height: auto }
+    .appDown li img{width: 200px;height: 60px;}
+    .head .title_down h1{  font-size: 40px;padding-bottom: 0%;padding-top: 6%;}
+    .head .title_down h2{  display: none}
+    .introduce p,.contact>span,.brand_app li,.footBottom,#articleCon span{font-size: 20px;}
+    .brand_app h3{font-size: 40px;}
+}
+/*4 4s*/
+@media only screen and (device-width :320px) and (-webkit-device-pixel-ratio:2){
+    /* body{background: green} */
+    .head .title_down{height: 316px;}
+    .head .title_down h1{  font-size: 30px;}
+    .head .title_down h2{  font-size: 20px;}
+    .introduce p,.contact>span,.brand_app li,.footBottom,#articleCon span{font-size: 14px;}
+    .brand_app h3{font-size: 18px;}
+}
+/*魅族*/
+@media only screen and (min-device-width :1080px) and (-webkit-min-device-pixel-ratio : 2.5){ }
+
+/* ??????????*/
+@media only screen and (min-device-width :1080px) and (-webkit-min-device-pixel-ratio : 3){
+    .head .title_down{height: 375px;}
+    .head .title_down h1{  font-size: 48px;}
+    .head .title_down h2{  font-size: 30px;}
+    .introduce p,.contact>span,.brand_app li,.footBottom,#articleCon span{font-size: 16px;}
+    .brand_app h3{font-size: 20px;}
+}
+
+/* #### Mobile Phones Portrait #### 小米*/  
+@media screen and (device-width: 360px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio : 3){  
+    /* body{background: green} */
+    .head .title_down{height: 320px;}
+    .head .title_down h1{  font-size: 44px;}
+    .head .title_down h2{  font-size: 22px;}
+    .introduce p,#articleCon span,.contact>span,.brand_app li,.footBottom{font-size: 16px;}
+    .brand_app h3{font-size: 20px;}
+
+    .shareHead .logoCon .leftTitle h2{font-size:14px;  }  
+    .shareHead .logoCon .leftTitle p{ font-size:11px;  }   
+    #articleCon .header h1{font-size:23px;}
+    #articleCon .header .author{font-size: 16px;}
+    #articleCon p,#articleCon span,#articleCon blockquote,#articleCon blockquote p{font-size: 16px;}
+    #articleCon h3{font-size: 20px;}
+    #articleCon h4{font-size: 14px;}
+    #articleCon ol li,#articleCon ul li{ font-size: 16px;}
+}  
