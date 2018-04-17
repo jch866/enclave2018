@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_lock_outline_black_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="9 9 27 9 27 27 9 27"></polygon>
+    </defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="付费文章未购买" transform="translate(-168.000000, -347.000000)">
+            <g id="解锁文章" transform="translate(126.000000, 348.000000)">
+                <g id="ic_lock_outline_black_24px" transform="translate(43.000000, 0.000000)">
+                    <circle id="Oval-4" stroke="#51ADCF" cx="18" cy="18" r="18"></circle>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="a"></g>
+                    <path d="M18,21.75 C18.825,21.75 19.5,21.075 19.5,20.25 C19.5,19.425 18.825,18.75 18,18.75 C17.175,18.75 16.5,19.425 16.5,20.25 C16.5,21.075 17.175,21.75 18,21.75 Z M22.5,15 L21.75,15 L21.75,13.5 C21.75,11.43 20.07,9.75 18,9.75 C15.93,9.75 14.25,11.43 14.25,13.5 L14.25,15 L13.5,15 C12.675,15 12,15.675 12,16.5 L12,24 C12,24.825 12.675,25.5 13.5,25.5 L22.5,25.5 C23.325,25.5 24,24.825 24,24 L24,16.5 C24,15.675 23.325,15 22.5,15 Z M15.675,13.5 C15.675,12.2175 16.7175,11.175 18,11.175 C19.2825,11.175 20.325,12.2175 20.325,13.5 L20.325,15 L15.675,15 L15.675,13.5 Z M22.5,24 L13.5,24 L13.5,16.5 L22.5,16.5 L22.5,24 Z" id="Shape" fill="#51ADCF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
