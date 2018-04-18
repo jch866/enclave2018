@@ -49,7 +49,7 @@ animation:top15 2.5s ease  infinite;
 .mdetail_head .down_btn .download{ width: 56px;margin-right: 20px;}
 .mdetail_head .down_btn .downApp{width: 56px;text-align: center; border: 1px solid #404146;border-radius: 4px;color: #404146;}
 
-.m_artList,.m_recommend,.mp3_box,.m_comment{padding: 0 16px;}
+.m_artList,.m_recommend,.mp3_box,.m_comment,.m_probation{padding: 0 16px;}
 .m_artList li,.m_recommend li{display: flex; margin-top:16px; }
 .m_artList li div.imgWrap,.m_recommend li div.imgWrap{width: 100px;height: 100px;overflow: hidden; }
 .m_artList li img,.m_recommend li img{width: 133px;height: 100px;transform: translateX(-16px)}
@@ -80,16 +80,61 @@ animation:top15 2.5s ease  infinite;
 .avatar_wrap>span.profile .time{color: #8B8687;}
 .avatar_wrap>span.profile .blue{font-size: 1.3rem;color: #51ADCF;}
 /*avatar*/
-.m_comment_list li{}
+.m_comment_list li{padding:0 0 15px 0;}
 .m_comment_list li div.m_header{}
 .m_comment_list li div.m_body{font-size: 1.6rem;font-weight: 400;color:#404146;line-height: 2.6rem;}
 
 .subscribe_bar{display: flex;height: 58px;line-height: 60px; border-top: 1px solid #C8C7CC;background: rgba(255,255,255,0.82);
-box-shadow: 0 0 0 0 rgba(0,0,0,0.30);
+box-shadow: 0 0 0 0 rgba(0,0,0,0.30);border-image: /* linear-gradient( #C8C7CC, #fff) 30 30;*/
 font-size: 1.4rem; color: #fff;}
 .subscribe_bar .price{flex: 1;font-size: 1.6rem;color: #BA5162;padding-left: 20px;}
 .subscribe_bar .price del{margin-left: 10px;font-size: 12px;color: #B2B2B2;}
 .subscribe_bar .order{width: 118px;text-align: center;background: #404146;}
+
+/*error page css*/
+.page_error{
+    font-size: 1.6rem;color: #8B8687;height: 54px;color: #8B8687;padding-left: 50px;line-height: 54px;
+    box-shadow: 0 2px 13px 0 rgba(0,0,0,0.29);border-radius: 4px;
+    background: #fff url('../img/error.svg') 15px center no-repeat;margin: 20px 15px 0 15px;}
+
+/*article_special page*/
+#articleCon{position: relative;}
+#articleCon .special_title{padding-left: 20px;height: 60px;position: absolute;top:165px;z-index: 3}
+#articleCon .special_title h1{font-size: 24px;color: #FFFFFF;line-height: 36px;margin:0}
+#articleCon .special_title p{font-size: 14px;color: #CBCBCB;line-height: 22px;margin:0}
+
+/*article_special page read*/
+.m_probation_list li{ display: flex; max-height: 90px; overflow: hidden;padding: 15px 0; border-bottom:1px solid #C8C7CC;  }
+.m_probation_list li .summary{flex:1;}
+.m_probation_list li .summary h4{font-size: 1.6rem;color: #000000;margin-bottom: 6px; }
+.m_probation_list li .summary p{font-size: 1.3rem;color: #8B8687;line-height: 18px;}
+.m_probation_list li .thumbnail{width: 90px;height: 90px;margin-left: 10px;}
+.m_probation_list li .thumbnail img{width:100%;height: 100%; border-radius: 5px;}
+.m_probation_list li:last-child{border-bottom: none;}
+
+#articleCon .lock_tip{text-align: center;padding-top: 30px;}
+#articleCon .lock_tip img{width:36px; height: 36px;}
+#articleCon .lock_tip .buy_text{text-align: center;font-size: 1.2rem;color: #8B8687;line-height: 28px;}
+
+#articleCon .lock_owner{padding:15px 0 20px 0;margin:20px 16px; border-bottom:1px solid #C8C7CC; border-top:1px solid #C8C7CC; }
+#articleCon .lock_owner .title{font-size: 1.4rem;color: #51ADCF;letter-spacing: 1px;line-height: 26px;padding-bottom: 5px;}
+#articleCon .lock_owner .l_box{display: flex;font-size: 12px;}
+#articleCon .lock_owner .l_box .l_thumb{width: 80px;height: 110px;margin-right: 10px}
+#articleCon .lock_owner .l_box .l_thumb img{width:100%;height: 100%;}
+#articleCon .lock_owner .l_box .l_intro{flex: 1;display: flex;flex-direction: column;justify-content: space-between;}
+#articleCon .lock_owner .l_box .l_intro .l_title{font-size: 18px;color: #404146; }
+#articleCon .lock_owner .l_box .l_intro .l_cont{color: #9B9B9B;}
+#articleCon .lock_owner .l_box .l_intro .l_foot{display: flex; justify-content: space-between; }
+#articleCon .lock_owner .l_box .l_intro .l_foot span{display: inline-block;}
+#articleCon .lock_owner .l_box .l_intro .l_foot .lf_name{color: #8B8687; }
+#articleCon .lock_owner .l_box .l_intro .l_foot .lf_price{ color: #BA5162;}
+#articleCon .lock_owner .l_box .l_intro .l_foot .lf_price del{color: #B2B2B2; padding-left: 5px;}
+
+
+
+
+
+
 
 
 /*new article css append -end*/
