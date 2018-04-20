@@ -65,10 +65,10 @@
         </div>
         <!-- </div> -->
     </article>
-    <div class="mp3_box" id='mp3_control'>
+    <!-- <div class="mp3_box" id='mp3_control'>
         <audio id="myaudio" src="https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3" controls="controls" loop="false" hidden="true" >
 </audio>
-        <div class="mp3_ctrl mp3_play">00:35</div>
+        <div class="mp3_ctrl mp3_play">00:35</div> -->
     </div>
     <!-- 最新评论 -->
     <div class="commentBox">
@@ -114,18 +114,7 @@
         <img class='el-audio-delete' src='audio_delete.png' onclick='EnclaveAudio.onDelete(event)'>
     </p> -->
     <script>
-    window.onload=function(){
-        var flag_play=false;
-        var audio = document.getElementById('myaudio');
-        var mycontrol = document.getElementById('mp3_control');
-        mycontrol.addEventListener('click',function(){
-            if(audio.paused){
-                audio.play()
-                return 
-             }
-            audio.pause();
-        })
-    }
+    
     // $(function() {
     //     url = encodeURIComponent(location.href);
     //     url = url.replace("55555", "enclave");
@@ -161,7 +150,9 @@
     //     });
     // });
     </script>
-    <script src="js/main.min.js"></script>
+    
+    
+    <script src="js/main.js"></script><script src="js/m_audio.js"></script>
 </body>
 
 </html>

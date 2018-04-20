@@ -42,7 +42,10 @@ $(function() {
         al: 'https://app.enclavebooks.cn/v1_4/index', //article list
         ad: 'https://app.enclavebooks.cn/v1_4/article?', //article detail
         ar: 'https://app.enclavebooks.cn/v1_4/recommend' ,//article random  随机三篇
-        homepage: 'https://app.enclavebooks.cn' //article random  随机三篇
+        homepage: 'https://app.enclavebooks.cn',
+        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=',
+        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=',
+        article: 'http://test.enclavebooks.cn/v2/shareArticle?id=253',
     };
     //首页slides变量
     var index = 0,
@@ -89,7 +92,7 @@ $(function() {
      * @param  {[type]} data [服务器发回的JSON数据]
      * @return {[type]}      [void]
      */
-    function renderDom(wrap, data) {
+    function renderDom(wrap, data,cb) {
         switch (wrap) {
             case artListUl: //文章列表的Dom
                 artListUl.html('');
@@ -156,16 +159,20 @@ $(function() {
                 })
                 break;
             case mDetails: //移动端文章详情
-                var str = '<img src="' + data.art_thumb + '" alt=""><h1>' + data.art_title + '</h1>' +
-                    '<div class="author">' +
-                    '<span>' + data.art_editor + ' · ' + format(data.art_time*1000) + '</span>' +
-                    '</div>' + data.art_content.replace(/\/ueditor\/php/g,(url.homepage+"/ueditor/php")) +
-                    '<div class="readOther">' +
-                    '<span class="left mark">' + data.cate_name + '</span>' +
-                    '<span class="reads"><i></i>' + data.art_view + '</span>' +
-                    '</div>';
+                var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
+                    '<div class="avatar_wrap">'+
+                        '<span class="avatar">'+
+                            '<img src="'+data.artAvatar+'" alt="">'+
+                        '</span>'+
+                        '<span class="profile">'+
+                            '<div class="name blue">' + data.artEditor + '</div>'+
+                            '<div class="time">' + format(data.artTime*1000) + '</div>'+
+                        '</span>'+
+                    '</div>'+data.artContent.replace(/\/ueditor\/php/g,(url.homepage+"/ueditor/php"));
                 mDetails.html($(str));
+                cb && cb();
                 break;
+
         }
 
 
@@ -416,11 +423,6 @@ $(function() {
             callBack(event);
         });
     }
-    // var mIndex = document.getElementById('header');
-    // mIndex && tapEvt(mIndex,function() {
-    //     $('body,html').animate({ scrollTop: doc.height() }, 400)
-    // });
-
     function randStr(){
         var s= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var len = s.length;
@@ -470,4 +472,104 @@ $(function() {
     downApp && downApp.on('click',function(e){
         downLoad();
     })
+
+    // 文章详情新版本 增加JS
+    function getSpecial_v1(){
+        //$.get(url.special)
+    }
+    function getArticle_v1(){
+        $.get(url.article,function(data){
+            console.log(data);
+            if(data.code == 200){
+                renderDom(mDetails, data.result.article,filterAction)
+            }
+        })
+    }
+    getArticle_v1();
+
+    //从后台读取完文件后再操作新的DOM
+    function filterAction(){
+        // addAllAudioDom()
+        // $('.el-audio').addClass('audio-play-box mp3_play');
+        // bindAudioEvent()
+        new m_audio({sel:$('.el-audio')})
+        
+    }
+    function addAllAudioDom(){
+        $('img.el-audio-play').remove();
+        $('img.el-audio-delete').remove();
+        $('.el-audio').each(function(item){
+            var $this = $(this);
+            var audio= new Audio();
+            var id = $this.attr('data-id');
+            var url = $this.attr('data-url');
+            var originalurl = $this.attr('data-original-url');
+            $(audio).attr('data-id',id).attr('data-url',url).attr('data-original-url',originalurl).attr('src',url).attr('loop',false).attr('hidden',true);
+            $this.append($(audio));
+        })
+    }
+    function bindAudioEvent(){
+        $('.el-audio').each(function(item){
+            var $this = $(this);
+            var id = $this.attr('data-id');
+            $this.on('click',function(){
+                var currentAudio = $(this).find("audio[data-id="+id+"]");
+                var audio = currentAudio.get(0);
+                console.log(currentAudio.attr('data-id'));
+                if(audio.paused){
+                    setAllAudioPause();
+                    audio.play()
+                    calCountdown(currentAudio);
+                    $(this).hasClass('mp3_play')&&$(this).removeClass('mp3_play').addClass('mp3_pause');
+                    return 
+                }
+                audio.pause();
+                $(this).hasClass('mp3_pause')&&$(this).removeClass('mp3_pause').addClass('mp3_play')
+            })
+        })
+    }
+    function updateRemainTime(audio,second){
+        var s = _formatDuration(second);
+        audio.siblings('span.el-audio-duration').text(s);
+    }
+    function _formatDuration(second){
+        var m = Math.floor(second / 60);
+        m = m < 10 ? ( '0' + m ) : m;
+        var s = parseInt(second % 60);
+        s = s < 10 ? ( '0' + s ) : s;
+        return m + ':' + s;
+    }
+    function calCountdown(audio){
+        audio.on("timeupdate",function() {
+            var all =this.duration;
+            var curr=this.currentTime;
+            var diff = parseInt(all-curr);
+            if (diff <= 0) {
+                audio.get(0).pause();
+                updateRemainTime(audio,0);
+                initSingleAudio(audio);
+            } else {
+                if (!isNaN(diff)) {
+                    updateRemainTime(audio,diff)
+                }
+            }
+        })
+    }
+    function setAllAudioPause(){
+        $('.el-audio').each(function(item){
+            var $this = $(this);
+            var audio = $this.find("audio[data-id]");
+            audio.get(0).pause();
+        })
+    }
+    function initSingleAudio(audio){
+        setTimeout(function(){
+            var time = _formatDuration(audio.get(0).duration);
+            var parent = audio.parent();
+            parent.hasClass('mp3_pause')&&parent.removeClass('mp3_pause').addClass('mp3_play');
+            audio.siblings('span.el-audio-duration').text(time);
+        },2000)
+    }
+
+
 });

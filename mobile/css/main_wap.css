@@ -66,6 +66,7 @@ animation:top15 2.5s ease  infinite;
 .mp3_ctrl{height: 58px; line-height: 60px; border: 1px solid #CBCBCB;border-radius: 4px;color: #404146;padding-left: 57px; }
 .mp3_play{background: #fff url('../img/mp3_play.svg') 20px center no-repeat;}
 .mp3_pause{background: #fff url('../img/mp3_pause.svg') 20px center no-repeat;}
+#articleCon .audio-play-box{height: 58px; line-height: 60px; border: 1px solid #CBCBCB;border-radius: 4px;color: #404146;padding-left: 57px; }
 /*comment list*/
 .commentBox{border-top: 1px solid #C8C7CC;padding-top: 15px;}
 .m_comment h1{font-size: 21px;color: #000;line-height: 40px;}
