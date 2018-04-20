@@ -10,11 +10,10 @@ function m_audio(cfg){
 	this.currentAudioSpanChild='';
 	this.removePlay=cfg.sel.find('img.el-audio-play');
 	this.removeDel=cfg.sel.find('img.el-audio-delete');
-	this.cls={play:'',pause:''};
 	this.init();
 };
 m_audio.prototype={
-	init:function(audio,second){
+	init:function(){
 		this.removePlay.remove();
 		this.removeDel.remove();
 		this._initDurationTime();
@@ -53,7 +52,7 @@ m_audio.prototype={
             var $this = $(this);
             $this.on('click',function(){
             	self._setCurrentAudioInfo($this);//设备当前音频的信息
-                console.log(self.currentAudioId);
+                //console.log(self.currentAudioId);
                 if(self.currentAudioJS.paused){
                 	self._setAllAudioPause();
                     self.currentAudioJS.play()

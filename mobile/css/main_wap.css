@@ -46,7 +46,7 @@ animation:top15 2.5s ease  infinite;
 .mdetail_head .art_logo{}
 .mdetail_head .down_btn{font-size: 14px;height: 32px;line-height: 32px; }
 .mdetail_head .down_btn a{ display: inline-block; }
-.mdetail_head .down_btn .download{ width: 56px;margin-right: 20px;}
+.mdetail_head .down_btn .download{ width: 58px;margin-right: 20px;}
 .mdetail_head .down_btn .downApp{width: 56px;text-align: center; border: 1px solid #404146;border-radius: 4px;color: #404146;}
 
 .m_artList,.m_recommend,.mp3_box,.m_comment,.m_probation{padding: 0 16px;}
@@ -132,12 +132,7 @@ font-size: 1.4rem; color: #fff;}
 .lock_owner .l_box .l_intro .l_foot .lf_price{ color: #BA5162;}
 .lock_owner .l_box .l_intro .l_foot .lf_price del{color: #B2B2B2; padding-left: 5px;}
 
-
-
-
-
-
-
+.openInSafari{position: absolute;z-index:12;width: 100%;height: 60px;text-align: center; line-height: 60px;  font-size: 1.4rem;color: #404146;background:#fff}
 
 /*new article css append -end*/
 

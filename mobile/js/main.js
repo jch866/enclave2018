@@ -6,11 +6,17 @@ $(function() {
         mRecommendUl = $(".m_recommend>ul"),
         mArtList = $(".m_artList>ul"),
         mDetails = $(".m_details"),
+        m_comment_list = $(".m_comment_list"),
+        m_sharearticle_v1 = $(".m_sharearticle_v1"),
+        m_special_v1 = $(".m_special_v1"),
+        m_article_v1 = $(".m_article_v1"),
+        m_probation_list = $(".m_probation_list"),
         details = $('.article_detail'),
         art_head = $('.article_head'),
         mart_head = $('.mdetail_head'),
         menu_tab = $('.menu_con'),
         downApp = $('#downApp'),
+        openApp = $('#openApp'),
         tab = $('.menu > a'),
         mWeChat = $('#m_weChat'),
         mask = $('#mask'),
@@ -43,8 +49,8 @@ $(function() {
         ad: 'https://app.enclavebooks.cn/v1_4/article?', //article detail
         ar: 'https://app.enclavebooks.cn/v1_4/recommend' ,//article random  随机三篇
         homepage: 'https://app.enclavebooks.cn',
-        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=',
-        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=',
+        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=1',
+        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=9',
         article: 'http://test.enclavebooks.cn/v2/shareArticle?id=253',
     };
     //首页slides变量
@@ -92,7 +98,7 @@ $(function() {
      * @param  {[type]} data [服务器发回的JSON数据]
      * @return {[type]}      [void]
      */
-    function renderDom(wrap, data,cb) {
+    function renderDom(wrap,data,cb) {
         switch (wrap) {
             case artListUl: //文章列表的Dom
                 artListUl.html('');
@@ -159,6 +165,17 @@ $(function() {
                 })
                 break;
             case mDetails: //移动端文章详情
+                var str = '<img src="' + data.art_thumb + '" alt=""><h1>' + data.art_title + '</h1>' +
+                    '<div class="author">' +
+                    '<span>' + data.art_editor + ' · ' + format(data.art_time*1000) + '</span>' +
+                    '</div>' + data.art_content.replace(/\/ueditor\/php/g,(url.homepage+"/ueditor/php")) +
+                    '<div class="readOther">' +
+                    '<span class="left mark">' + data.cate_name + '</span>' +
+                    '<span class="reads"><i></i>' + data.art_view + '</span>' +
+                    '</div>';
+                mDetails.html($(str));
+                break;
+            case m_article_v1: //移动端文章详情 v1
                 var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
                     '<div class="avatar_wrap">'+
                         '<span class="avatar">'+
@@ -169,10 +186,64 @@ $(function() {
                             '<div class="time">' + format(data.artTime*1000) + '</div>'+
                         '</span>'+
                     '</div>'+data.artContent.replace(/\/ueditor\/php/g,(url.homepage+"/ueditor/php"));
-                mDetails.html($(str));
+                m_article_v1.html($(str));
                 cb && cb();
                 break;
-
+            case m_comment_list: //移动端文章详情下面的最新评论 v1
+                m_comment_list.html('');
+                $.each(data, function(index, item) {
+                    var str = '<li>'+
+                    '<div class="m_header avatar_wrap">'+
+                        '<span class="avatar"><img src="' + item.avatar+ '" alt=""></span>'+
+                        '<span class="profile">'+
+                            '<div class="name">' + item.name+ '</div>'+
+                            '<div class="time">' + format(item.time*1000) + '</div>'+
+                        '</span>'+
+                    '</div>'+
+                    '<div class="m_body">' + item.content+'</div>'+
+                    '</li>'
+                    m_comment_list.append($(str));
+                })
+            break;
+            case m_special_v1: //专栏页 v1
+                var str = '<img src="' + data.thumb + '" alt=""><h1>' + data.title + '</h1>' +
+                    '<div class="avatar_wrap">'+
+                        '<span class="profile">'+
+                            '<div class="time">' + format(data.time*1000) + '</div>'+
+                        '</span>'+
+                        
+                    '</div>'+data.specialColumnIntro;
+                m_special_v1.html($(str));
+               
+                break;
+            case m_probation_list: //专栏页下面的试读 v1
+                m_probation_list.html('');
+                $.each(data, function(index, item) {
+                    var str = '<li>'+
+                    '<div class="summary">'+
+                        '<h4>' + item.artTitle+ '</h4>'+
+                        '<p>' + item.artTitle+ '</p>'+
+                    '</div>'+
+                        '<div class="thumbnail">'+
+                        '<img src="' + item.artThumb+ '" alt="">'+
+                    '</div>'+
+                '</li>';
+                    m_probation_list.append($(str));
+                })
+                break;
+            case m_sharearticle_v1: //付费文章页 v1
+                var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
+                    '<div class="avatar_wrap">'+
+                        '<span class="avatar">'+
+                            '<img src="'+data.artAvatar+'" alt="">'+
+                        '</span>'+
+                        '<span class="profile">'+
+                            '<div class="name blue">' + data.artEditor + '</div>'+
+                            '<div class="time">' + format(data.artTime*1000) + '</div>'+
+                        '</span>'+
+                    '</div>'+data.artContent.replace(/\/ueditor\/php/g,(url.homepage+"/ueditor/php"));
+                m_sharearticle_v1.html($(str));
+                break;
         }
 
 
@@ -379,7 +450,7 @@ $(function() {
         showMask();
     })
     mask.on("click", function(){
-        hideMask()
+        hideMask();
     });
 
     //补0；
@@ -459,116 +530,68 @@ $(function() {
         return device;
     }
 
-    function downLoad(){
+    function downLoad(action){
         var device = devicePlatform();
         if(device == 'iOS'){
-            window.location.href='https://itunes.apple.com/us/app/fei-de/id1179249797?mt=8';
+            if(action=='down'){
+                window.location.href='https://itunes.apple.com/cn/app/%E9%A3%9E%E5%9C%B0-%E6%96%87%E8%89%BA%E9%9D%92%E5%B9%B4%E7%9A%84%E9%AB%98%E5%93%81%E8%B4%A8%E6%96%87%E5%AD%A6%E8%89%BA%E6%9C%AF%E9%98%85%E8%AF%BB%E7%A4%BE%E5%8C%BA/id1179249797?mt=8';
+             }else{
+                showMask();
+             }
         }else if(device = 'Android'){
-            window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&ckey=CK1366907300592';
+            window.location.href='http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&from=singlemessage';
         }else{
             window.location.href='index.html';
         }
     }
     downApp && downApp.on('click',function(e){
-        downLoad();
+        e.preventDefault();
+        downLoad('down');
+    })
+    openApp && openApp.on('click',function(e){
+        e.preventDefault();
+        downLoad('open')
     })
 
     // 文章详情新版本 增加JS
+    //专栏 新版
     function getSpecial_v1(){
-        //$.get(url.special)
-    }
-    function getArticle_v1(){
-        $.get(url.article,function(data){
+        m_special_v1.addClass('loadingBg');
+         $.get(url.special,function(data){
             console.log(data);
             if(data.code == 200){
-                renderDom(mDetails, data.result.article,filterAction)
+                renderDom(m_special_v1, data.result);
+                console.log(data.result.specialColumnIntro)
+                renderDom(m_probation_list, data.result.preview);
+                m_special_v1.removeClass('loadingBg');
+            }
+         })
+    }
+    //付费文章 新版
+    function getSpecialArticle_v1(){
+        $.get(url.specialarticle,function(data){
+            console.log('specialarticle');
+            console.log(data)
+         })
+    }
+    //文章 新版
+    function getArticle_v1(){
+        m_article_v1.addClass('loadingBg');
+        $.get(url.article,function(data){
+            // console.log(data)
+            if(data.code == 200){
+                renderDom(m_article_v1, data.result.article,filterAction);
+                renderDom(m_comment_list, data.result.comment);
+                m_article_v1.removeClass('loadingBg');
             }
         })
     }
     getArticle_v1();
-
+    // getSpecialArticle_v1();
+    getSpecial_v1();
     //从后台读取完文件后再操作新的DOM
     function filterAction(){
-        // addAllAudioDom()
-        // $('.el-audio').addClass('audio-play-box mp3_play');
-        // bindAudioEvent()
         new m_audio({sel:$('.el-audio')})
-        
-    }
-    function addAllAudioDom(){
-        $('img.el-audio-play').remove();
-        $('img.el-audio-delete').remove();
-        $('.el-audio').each(function(item){
-            var $this = $(this);
-            var audio= new Audio();
-            var id = $this.attr('data-id');
-            var url = $this.attr('data-url');
-            var originalurl = $this.attr('data-original-url');
-            $(audio).attr('data-id',id).attr('data-url',url).attr('data-original-url',originalurl).attr('src',url).attr('loop',false).attr('hidden',true);
-            $this.append($(audio));
-        })
-    }
-    function bindAudioEvent(){
-        $('.el-audio').each(function(item){
-            var $this = $(this);
-            var id = $this.attr('data-id');
-            $this.on('click',function(){
-                var currentAudio = $(this).find("audio[data-id="+id+"]");
-                var audio = currentAudio.get(0);
-                console.log(currentAudio.attr('data-id'));
-                if(audio.paused){
-                    setAllAudioPause();
-                    audio.play()
-                    calCountdown(currentAudio);
-                    $(this).hasClass('mp3_play')&&$(this).removeClass('mp3_play').addClass('mp3_pause');
-                    return 
-                }
-                audio.pause();
-                $(this).hasClass('mp3_pause')&&$(this).removeClass('mp3_pause').addClass('mp3_play')
-            })
-        })
-    }
-    function updateRemainTime(audio,second){
-        var s = _formatDuration(second);
-        audio.siblings('span.el-audio-duration').text(s);
-    }
-    function _formatDuration(second){
-        var m = Math.floor(second / 60);
-        m = m < 10 ? ( '0' + m ) : m;
-        var s = parseInt(second % 60);
-        s = s < 10 ? ( '0' + s ) : s;
-        return m + ':' + s;
-    }
-    function calCountdown(audio){
-        audio.on("timeupdate",function() {
-            var all =this.duration;
-            var curr=this.currentTime;
-            var diff = parseInt(all-curr);
-            if (diff <= 0) {
-                audio.get(0).pause();
-                updateRemainTime(audio,0);
-                initSingleAudio(audio);
-            } else {
-                if (!isNaN(diff)) {
-                    updateRemainTime(audio,diff)
-                }
-            }
-        })
-    }
-    function setAllAudioPause(){
-        $('.el-audio').each(function(item){
-            var $this = $(this);
-            var audio = $this.find("audio[data-id]");
-            audio.get(0).pause();
-        })
-    }
-    function initSingleAudio(audio){
-        setTimeout(function(){
-            var time = _formatDuration(audio.get(0).duration);
-            var parent = audio.parent();
-            parent.hasClass('mp3_pause')&&parent.removeClass('mp3_pause').addClass('mp3_play');
-            audio.siblings('span.el-audio-duration').text(time);
-        },2000)
     }
 
 

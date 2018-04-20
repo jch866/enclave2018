@@ -18,64 +18,32 @@
 </head>
 
 <body>
+    
+    <div class="iosMask" id="mask" style="display:none">
+        <div class="openInSafari">点击右上角选择“在Safari中打开”</div>
+    </div>
     <header class="mdetail_head">
-        <div class="head_wrap">
+        <div class="head_wrap">     
             <div class="art_logo">
                 <a href="index.html"><img src="img/logo_new.svg" alt=""></a>
             </div>
             <div class="down_btn">
-                <a href="javascript:void(0)" class="download">直接下载</a>
-                <a href="javascript:void(0)" class="downApp" id='downApp'>打开</a>
+                <a href="javascript:void(0)" class="download" id='downApp'>直接下载</a>
+                <a href="javascript:void(0)" class="downApp" id='openApp'>打开</a>
             </div>
         </div>
     </header>
     <article class="shareArt ">
-        <!-- <div class="padding m_details" id="articleCon"> -->
-        <!-- <div class="header">
-                <h1>托马斯 · 伯恩哈德：人爱动物，因为他们甚至没有能力爱自己</h1>
-                <div class="author">胡桑·
-                    <time>两个月前</time>
-                </div>
-            </div> -->
-        <!-- content -->
-        <div class="padding m_details" id="articleCon"><img src="https://photo.enclavebooks.cn/enclave/photo/2018-04-16/14:02:44.jpg" alt="">
-            <h1>刀锋下生存的底生存的底生存的底生存的底生存的底层民众</h1>
-            <div class="avatar_wrap">
-                <span class="avatar">
-                    <img src="img/avatar.jpg" alt="">
-                </span>
-                <span class="profile">
-                    <div class="name blue">马小盐</div>
-                    <div class="time">3天前</div>
-                </span>
-            </div>
-            <!-- <div class="author"><span>马小盐 · 2018-04-16 19:00:00</span></div> -->
-            <h4>《暴裂无声》拓展了悬疑片的边界，在讲述一个环环相扣的激烈故事的表象之下，导演的本意却在于触及现实之痛，在于关注生活在刀锋下的底层民众。</h4>
-            <h3>1. 《罗生门》，拉康理论的电影镜像</h3>
-            <p>黑泽明的《罗生门》是拉康幻象理论的最佳电影对应物。影片里的几位当事人，武士、武士之妻、杀人强盗、砍柴人，之所以供词不一“需要精神病医生的精神病医生”，但依拉康理论解读海德格尔为何成为纳粹党员便可见缘由：希特勒实现了海德尔格的癔症性幻象。</p>
-            <p><img src="https://photo.enclavebooks.cn/20180415/59967044986576134689.jpg" title="59967044986576134689.jpg" _src="https://photo.enclavebooks.cn/20180415/59967044986576134689.jpg" alt="p2508194230_副本.jpg"></p>
-            <h6>剧照：《暴裂无声》（电影）</h6>
-            <p>比起忻钰坤的者既有讲好一个通俗故事的能力，又有给通俗故事赋予深层意义的能力。这是一种将商业片与艺术片巧妙的融合在一起的智慧。国产影片的曙光，或许就在毕赣、忻钰坤这些八零后新锐导演的身上，他们吸纳国外优秀的电影作品的营养之后，完全走在自己的路上。</p>
-            <footer>
-                <hr>
-                <p>马小盐，女，七十年代生人。小说作者、文化批评家。2002年开始在各大杂志发表短篇小说二十余篇，2006年出版《鹤顶红》系列长篇小说。后转型文化批评，先后为凤凰网文化频道、FT中文网撰写专栏。现为陕西省大型文学期刊《延河》首席编辑。</p>
-                <p>题图：剧照：《暴裂无声》（电影）</p>
-                <p>责任编辑：颖川 |&nbsp;实习编辑：陈百</p>
-            </footer>
+        <div class="padding m_article_v1" id="articleCon"> 
         </div>
-        <!-- </div> -->
     </article>
-    <!-- <div class="mp3_box" id='mp3_control'>
-        <audio id="myaudio" src="https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3" controls="controls" loop="false" hidden="true" >
-</audio>
-        <div class="mp3_ctrl mp3_play">00:35</div> -->
     </div>
     <!-- 最新评论 -->
     <div class="commentBox">
         <div class="m_comment">
             <h1>最新评论</h1>
             <ul class="m_comment_list">
-                <li>
+                <!-- <li>
                     <div class="m_header avatar_wrap">
                         <span class="avatar">
                             <img src="img/avatar.jpg" alt="">
@@ -85,34 +53,14 @@
                             <div class="time">3天前</div>
                         </span>
                     </div>
-                    <div class="m_body"><p>已购用户可见最深的一次出行应该是某次周末去南京旅行。早上十点跟朋友商量去哪浪，临时决定跨城去南京。一</p></div>
-                </li>
+                    <div class="m_body">
+                     已购用户可见最深的一次出行应该是某次周末去南京旅行。早上十点跟朋友商量去哪浪，临时决定跨城去南京。一 
+                    </div>
+                </li> -->
             </ul>
         </div>
     </div>
-    <!-- 底部订阅 -->
-    <div class="subscribe_bar">
-        <div class="price">12飞币<del>18</del></div>
-        <div class="order">订阅</div>
-    </div>
-    <!--
-        注意：该模板应该在文章正文的最外层，外层不应该再包含多余的p标签。
-        后台编辑器设置data-id应该为飞地之声的表id，用户编辑器把data-id设置为url就行了; 
-        data-url为音频的流播放地址; 
-        data-original-url为音频原始的地址，用于音频下载；
-        data-duration为音频时长，以上字段均用String类型；
-    -->
-    <!-- 对于两个img，各端均以相对路径加载显示 -->
-    <!-- EnclaveAudio.onXXX为音频事件处理  -->
-    <!-- <p class='el-audio' data-id='4' 
-    data-url='https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3' 
-    data-original-url='https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3'
-    data-duration='109' >
-        <img class='el-audio-play' src='audio_play.png' onclick='EnclaveAudio.onPlay(event)'> -->
-        <!-- 这里也是data-duration，格式为MM:SS -->
-       <!--  <span class='el-audio-duration'>01:49</span>
-        <img class='el-audio-delete' src='audio_delete.png' onclick='EnclaveAudio.onDelete(event)'>
-    </p> -->
+   
     <script>
     
     // $(function() {
