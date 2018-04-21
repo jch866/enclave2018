@@ -33,6 +33,21 @@ $(function() {
 
     };
     renderTemplate.prototype._v1_header = function(d) {
+    	var data = d.result;
+    	var currentPage = this.settings.id;
+    	var id = '';
+		if(currentPage==='new_article_v1'){
+			id=data.article.artId
+		}else if(currentPage==='special_v1'){
+			id=data.special.id
+		}else if(currentPage==='special_aritcle_v1'){
+			id = data.artId
+		}
+    	var link = {
+    		new_article_v1:'enclave://article?id='+id, 
+    		special_v1:'enclave://_special?id='+id, 
+    		special_aritcle_v1:'enclave://special_article?id='+id
+    	}
         var str = '<header class="mdetail_head">' +
             '<div class="head_wrap">  ' +
             '<div class="art_logo">' +
@@ -40,7 +55,7 @@ $(function() {
             '</div>' +
             '<div class="down_btn">' +
             '<a href="javascript:void(0)" class="download" id="downApp">直接下载</a>' +
-            '<a href="javascript:void(0)" class="downApp" id="openApp">打开</a>' +
+            '<a href="'+link[currentPage]+'" class="downApp" id="openApp">打开</a>' +
             '</div>' +
             '</div>' +
             '</header>';
@@ -62,9 +77,9 @@ $(function() {
             '</span>' +
             '</div>' + data.artDescription;
             '</div>';
-        var lock = '<div class="lock_tip">' +
-            '<a href="http://www.baidu.com"><div class="img"><img src="img/unlock.svg" alt=""></div>' +
-            '<div class="buy_text">购买专栏阅读剩余内容</div></a>' +
+        var lock = '<div class="lock_tip" id="lock_buy">' +
+            '<div class="img"><img src="img/unlock.svg" alt=""></div>' +
+            '<div class="buy_text">购买专栏阅读剩余内容</div>' +
             '</div>';
         self.settings.articleBody.append($(str));
         this.body.append($(lock));
@@ -90,7 +105,7 @@ $(function() {
     };
     //专栏页 
     renderTemplate.prototype._v1_special_body = function(d) {
-        var data = d.result;
+        var data = d.result.special;
         var self = this;
         var str = '<div class="m_special_header">' +
             '<img src="' + data.thumb + '" alt="">' +
@@ -102,13 +117,13 @@ $(function() {
         self.settings.articleBody.append($(str));
     };
     renderTemplate.prototype._v1_special_preview = function(d) {
-        var data = d.result.preview;
+        var data = d.result.special.preview;
         var self = this;
         var wrap = '<div class="commentBox"><div class="m_preview"><h1>试读</h1><ul class="m_preview_list"></ul></div></div>';
         this.body.append($(wrap));
         var preview = this.body.find('.m_preview_list');
         $.each(data, function(index, item) {
-            var str = '<a href="enclave://article?id=' + item.artId + '" ><li>' +
+            var str = '<a href="special_article.html?art_id=' + item.artId + '" ><li>' +
                 '<div class="summary">' +
                 '<h4>' + item.artTitle + '</h4>' +
                 '<p>' + item.artTitle + '</p>' +
@@ -121,10 +136,10 @@ $(function() {
         })
     };
     renderTemplate.prototype._v1_special_subscribe = function(d) {
-        var data = d.result;
+        var data = d.result.special;
         var str = '<div class="m_subscribe_bar">' +
             '<div class="price">' + data.afterDiscountPrice + '飞币<del>' + data.originalPrice + '飞币</del></div>' +
-            '<div class="order">订阅</div>' +
+            '<div class="order" id="order_buy">订阅</div>' +
             '</div>';
         this.body.append($(str));
     };
@@ -165,7 +180,6 @@ $(function() {
                 '</li>'
             comment.append($(str));
         })
-        //this.body.append($(wrap));
     };
     renderTemplate.prototype.format = function(seconds) {
         //seconds是整数，否则要parseInt转换

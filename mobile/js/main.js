@@ -16,6 +16,10 @@ $(function() {
         mWeChat = $('#m_weChat'),
         mask = $('#mask'),
         arrow = $(".arrow");
+    var downurl={iOS:'https://itunes.apple.com/cn/app/%E9%A3%9E%E5%9C%B0-%E6%96%87%E8%89%BA%E9%9D%92%E5%B9%B4%E7%9A%84%E9%AB%98%E5%93%81%E8%B4%A8%E6%96%87%E5%AD%A6%E8%89%BA%E6%9C%AF%E9%98%85%E8%AF%BB%E7%A4%BE%E5%8C%BA/id1179249797?mt=8',
+            android:'http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&from=singlemessage',
+            index:'index.html'
+        };
     var delay = 60 * 60 * 3 * 1000; //3小时缓存机制
     var cache = { aL: 'artList', aLT: 'artList_time' };
     var len1 = 6,
@@ -470,52 +474,88 @@ $(function() {
         } else {
             device = 'Desktop';
         }
-        console.log(device)
         return device;
     }
 
-    function downLoad(action) {
+    function downLoad() {
         var device = devicePlatform();
         if (device == 'iOS') {
-            window.location.href = 'https://itunes.apple.com/cn/app/%E9%A3%9E%E5%9C%B0-%E6%96%87%E8%89%BA%E9%9D%92%E5%B9%B4%E7%9A%84%E9%AB%98%E5%93%81%E8%B4%A8%E6%96%87%E5%AD%A6%E8%89%BA%E6%9C%AF%E9%98%85%E8%AF%BB%E7%A4%BE%E5%8C%BA/id1179249797?mt=8';
+            window.location.href = downurl.iOS
         } else if (device == 'iOS_wechat') {
             showMask();
         } else if (device == 'Android' || device == 'Android_wechat') {
-            window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&from=singlemessage';
+            window.location.href = downurl.android ;
         } else {
-            window.location.href = 'index.html';
+            window.location.href = downurl.index ;
         }
+        console.log(device)
     }
     downApp && downApp.on('click', function(e) {
         e.preventDefault();
         downLoad();
     })
     openApp && openApp.on('click', function(e) {
-        e.preventDefault();
-        downLoad()
+        //downLoad()
     })
 
     // 文章详情新版本 增加JS
 
     //新版 通用请求api
     function getRes_v1(item) {
+        $('#'+item.id).show().addClass('loadingBg');
         $.get(item.url, function(data) {
             var obj = { id: item.id, data: data };
-            if (item.hasCB) { obj.callback = filterAction }
-            console.log(obj)
+            if (item.hasCB) { obj.callback = afterRender }
             if (data.code == 200) {
                 new enclave_rt(obj);
+                $('#'+item.id).hide().removeClass('loadingBg');
             } else {
                 window.location.href = 'error.html';
             }
         })
     }
     //从后台读取完文件后再操作新的DOM
-    function filterAction() {
+    function afterRender() {
         new m_audio({ sel: $('.el-audio') });
-        var mart_head = $('.mdetail_head');
-        (mart_head.length != 0) && scrollFixed(mart_head);
+        otherOperate_v1();
     }
+    function otherOperate_v1(){
+        var mart_head = $('.mdetail_head');
+        var downApp = $('#downApp'); //顶部直接下载
+        var lock_buy = $('#lock_buy'); //有锁的地方
+        var order_buy = $('#order_buy');//专栏订阅
+        var openApp = $('#openApp');//打开
+        (mart_head.length != 0) && scrollFixed(mart_head);
+        (downApp.length != 0 )&& downApp.on('click', function(e) {
+            e.preventDefault();
+            downLoad();
+        });
+        (lock_buy.length != 0 )&& lock_buy.on('click', function(e) {
+            e.preventDefault();
+            downLoad();
+        });
+        (order_buy.length != 0 )&& order_buy.on('click', function(e) {
+            e.preventDefault();
+            downLoad();
+        });
+        (openApp.length != 0 )&& openApp.on('click', function(e) {
+            applink();
+        })
+
+    }
+    function applink(){ 
+        var device = devicePlatform();
+        if (device == 'iOS') {
+            setTimeout(function(){
+                window.location.href = downurl.iOS
+                window.location.href = downurl.iOS
+            },2000)
+        } else if (device == 'Android') {
+            setTimeout(function(){
+                 window.location.href = downurl.android ;
+            },2000)
+        }
+    } 
 
 
 });

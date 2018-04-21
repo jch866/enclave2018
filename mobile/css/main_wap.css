@@ -63,6 +63,7 @@ animation:top15 2.5s ease  infinite;
 .m_recommend ul{ height:auto;}
 
 /*new article css append -start*/
+#new_article_v1 , #special_v1 , #special_aritcle_v1 {display: none}
 .mp3_ctrl{height: 58px; line-height: 60px; border: 1px solid #CBCBCB;border-radius: 4px;color: #404146;padding-left: 57px; }
 .mp3_play{background: #fff url('../img/mp3_play.svg') 20px center no-repeat;}
 .mp3_pause{background: #fff url('../img/mp3_pause.svg') 20px center no-repeat;}
