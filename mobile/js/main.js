@@ -6,12 +6,6 @@ $(function() {
         mRecommendUl = $(".m_recommend>ul"),
         mArtList = $(".m_artList>ul"),
         mDetails = $(".m_details"),
-        m_comment_list = $(".m_comment_list"),
-        m_sharearticle_v1 = $(".m_sharearticle_v1"),
-        m_special_v1 = $(".m_special_v1"),
-        m_article_v1 = $(".m_article_v1"),
-        m_probation_list = $(".m_probation_list"),
-        m_special_subscribe_v1 = $(".m_subscribe_bar"),
         details = $('.article_detail'),
         art_head = $('.article_head'),
         mart_head = $('.mdetail_head'),
@@ -55,6 +49,14 @@ $(function() {
         specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=9',
         article: 'http://test.enclavebooks.cn/v2/shareArticle?id=253',
     };
+    var article_v1 = [{ id: 'new_article_v1', url: url.article, hasCB: true },
+        { id: 'special_aritcle_v1', url: url.specialarticle, hasCB: true },
+        { id: 'special_v1', url: url.special, hasCB: true }
+    ];
+    article_v1.forEach(function(item) {
+        $('#' + item.id).length > 0 && getRes_v1(item);
+    })
+
     //首页slides变量
     var index = 0,
         imgList = $('.imgcls'),
@@ -177,84 +179,7 @@ $(function() {
                     '</div>';
                 mDetails.html($(str));
                 break;
-            case m_article_v1: //移动端文章详情 v1
-                var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
-                    '<div class="avatar_wrap">' +
-                    '<span class="avatar">' +
-                    '<img src="' + data.artAvatar + '" alt="">' +
-                    '</span>' +
-                    '<span class="profile">' +
-                    '<div class="name blue">' + data.artEditor + '</div>' +
-                    '<div class="time">' + format(data.artTime * 1000) + '</div>' +
-                    '</span>' +
-                    '</div>' + data.artContent.replace(/\/ueditor\/php/g, (url.homepage + "/ueditor/php"));
-                m_article_v1.html($(str));
-                cb && cb();
-                break;
-            case m_comment_list: //移动端文章详情下面的最新评论 v1
-                m_comment_list.html('');
-                $.each(data, function(index, item) {
-                    var str = '<li>' +
-                        '<div class="m_header avatar_wrap">' +
-                        '<span class="avatar"><img src="' + item.avatar + '" alt=""></span>' +
-                        '<span class="profile">' +
-                        '<div class="name">' + item.name + '</div>' +
-                        '<div class="time">' + format(item.time * 1000) + '</div>' +
-                        '</span>' +
-                        '</div>' +
-                        '<div class="m_body">' + item.content + '</div>' +
-                        '</li>'
-                    m_comment_list.append($(str));
-                })
-                break;
-            case m_special_v1: //专栏页 v1
-                var str = '<div class="m_special_header">' +
-                    '<img src="' + data.thumb + '" alt="">' +
-                    '<div class="m_special_title">' +
-                    '<h1>' + data.title + '</h1>' +
-                    '<span>' + format(data.time * 1000) + '</span>' +
-                    '</div>' +
-                    '</div>' + data.specialColumnIntro;
-                m_special_v1.html($(str));
-                break;
-            case m_probation_list: //专栏页下面的试读 v1
-                m_probation_list.html('');
-                $.each(data, function(index, item) {
-                    var str = '<li>' +
-                        '<div class="summary">' +
-                        '<h4>' + item.artTitle + '</h4>' +
-                        '<p>' + item.artTitle + '</p>' +
-                        '</div>' +
-                        '<div class="thumbnail">' +
-                        '<img src="' + item.artThumb + '" alt="">' +
-                        '</div>' +
-                        '</li>';
-                    m_probation_list.append($(str));
-                })
-                break;
-            case m_special_subscribe_v1: //专栏页下面的订阅 v1
-                m_special_subscribe_v1.html('');
-                var str ='<div class="price">' + data.afterDiscountPrice + '<del>' + data.originalPrice + '</del></div>'+
-                        '<div class="order">订阅</div>';
-                m_special_subscribe_v1.append($(str));
-                break;
-            case m_sharearticle_v1: //付费文章页 v1
-                var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
-                    '<div class="avatar_wrap">' +
-                    '<span class="avatar">' +
-                    '<img src="' + data.artAvatar + '" alt="">' +
-                    '</span>' +
-                    '<span class="profile">' +
-                    '<div class="name blue">' + data.artEditor + '</div>' +
-                    '<div class="time">' + format(data.artTime * 1000) + '</div>' +
-                    '</span>' +
-                    '</div>' + data.artContent.replace(/\/ueditor\/php/g, (url.homepage + "/ueditor/php"));
-                m_sharearticle_v1.html($(str));
-                break;
         }
-
-
-
     }
     /**
      * [renderBySelfDate 利用存储的数据渲染文章列表]
@@ -530,22 +455,22 @@ $(function() {
     function devicePlatform() {
         var device = '';
         var ua = navigator.userAgent.toLowerCase();
-        if(/iphone|ipad|ipod/.test(ua)) {
-            if(/micromessenger/.test(ua)){
+        if (/iphone|ipad|ipod/.test(ua)) {
+            if (/micromessenger/.test(ua)) {
                 device = 'iOS_wechat';
-            }else{
+            } else {
                 device = 'iOS';
             }
         } else if (/android/.test(ua)) {
-            if(/micromessenger/.test(ua)){
+            if (/micromessenger/.test(ua)) {
                 device = 'Android_wechat';
-            }else{
+            } else {
                 device = 'Android';
             }
-        }else  {
+        } else {
             device = 'Desktop';
         }
-        debugger;console.log(device)
+        console.log(device)
         return device;
     }
 
@@ -553,9 +478,9 @@ $(function() {
         var device = devicePlatform();
         if (device == 'iOS') {
             window.location.href = 'https://itunes.apple.com/cn/app/%E9%A3%9E%E5%9C%B0-%E6%96%87%E8%89%BA%E9%9D%92%E5%B9%B4%E7%9A%84%E9%AB%98%E5%93%81%E8%B4%A8%E6%96%87%E5%AD%A6%E8%89%BA%E6%9C%AF%E9%98%85%E8%AF%BB%E7%A4%BE%E5%8C%BA/id1179249797?mt=8';
-        }else if (device == 'iOS_wechat') {
+        } else if (device == 'iOS_wechat') {
             showMask();
-        }else if (device == 'Android' || device == 'Android_wechat') {
+        } else if (device == 'Android' || device == 'Android_wechat') {
             window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&from=singlemessage';
         } else {
             window.location.href = 'index.html';
@@ -571,44 +496,25 @@ $(function() {
     })
 
     // 文章详情新版本 增加JS
-    //专栏 新版
-    function getSpecial_v1() {
-        m_special_v1.addClass('loadingBg');
-        $.get(url.special, function(data) {
-            console.log(data);
+
+    //新版 通用请求api
+    function getRes_v1(item) {
+        $.get(item.url, function(data) {
+            var obj = { id: item.id, data: data };
+            if (item.hasCB) { obj.callback = filterAction }
+            console.log(obj)
             if (data.code == 200) {
-                renderDom(m_special_v1, data.result);
-                renderDom(m_special_subscribe_v1, data.result);
-                renderDom(m_probation_list, data.result.preview);
-                m_special_v1.removeClass('loadingBg');
+                new enclave_rt(obj);
+            } else {
+                window.location.href = 'error.html';
             }
         })
     }
-    //付费文章 新版
-    function getSpecialArticle_v1() {
-        $.get(url.specialarticle, function(data) {
-            console.log('specialarticle');
-            console.log(data)
-        })
-    }
-    //文章 新版
-    function getArticle_v1() {
-        m_article_v1.addClass('loadingBg');
-        $.get(url.article, function(data) {
-            // console.log(data)
-            if (data.code == 200) {
-                renderDom(m_article_v1, data.result.article, filterAction);
-                renderDom(m_comment_list, data.result.comment);
-                m_article_v1.removeClass('loadingBg');
-            }
-        })
-    }
-    getArticle_v1();
-    getSpecialArticle_v1();
-    getSpecial_v1();
     //从后台读取完文件后再操作新的DOM
     function filterAction() {
-        new m_audio({ sel: $('.el-audio') })
+        new m_audio({ sel: $('.el-audio') });
+        var mart_head = $('.mdetail_head');
+        (mart_head.length != 0) && scrollFixed(mart_head);
     }
 
 

@@ -18,89 +18,13 @@
 </head>
 
 <body>
-    
     <div class="iosMask" id="mask" style="display:none">
         <div class="openInSafari">点击右上角选择“在Safari中打开”</div>
     </div>
-    <header class="mdetail_head">
-        <div class="head_wrap">     
-            <div class="art_logo">
-                <a href="index.html"><img src="img/logo_new.svg" alt=""></a>
-            </div>
-            <div class="down_btn">
-                <a href="javascript:void(0)" class="download" id='downApp'>直接下载</a>
-                <a href="javascript:void(0)" class="downApp" id='openApp'>打开</a>
-            </div>
-        </div>
-    </header>
-    <article class="shareArt ">
-        <div class="padding m_article_v1" id="articleCon"> 
-        </div>
-    </article>
-    </div>
-    <!-- 最新评论 -->
-    <div class="commentBox">
-        <div class="m_comment">
-            <h1>最新评论</h1>
-            <ul class="m_comment_list">
-                <!-- <li>
-                    <div class="m_header avatar_wrap">
-                        <span class="avatar">
-                            <img src="img/avatar.jpg" alt="">
-                        </span>
-                        <span class="profile">
-                            <div class="name">马小盐</div>
-                            <div class="time">3天前</div>
-                        </span>
-                    </div>
-                    <div class="m_body">
-                     已购用户可见最深的一次出行应该是某次周末去南京旅行。早上十点跟朋友商量去哪浪，临时决定跨城去南京。一 
-                    </div>
-                </li> -->
-            </ul>
-        </div>
-    </div>
-   
-    <script>
-    
-    // $(function() {
-    //     url = encodeURIComponent(location.href);
-    //     url = url.replace("55555", "enclave");
-    //     console.log(url);
-    //     $.ajax({
-    //         type: "get",
-    //         url: "https://app.enclavebooks.cn/v1_4/wxShare?url=" + url,
-    //         dataType: "jsonp",
-    //         jsonp: "callback",
-    //         jsonpCallback: "success_jsonpCallback",
-    //         success: function(data) {
-    //             wx.config({
-    //                 appId: data.appId,
-    //                 timestamp: data.timestamp,
-    //                 nonceStr: data.nonceStr,
-    //                 signature: data.signature,
-    //                 jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
-    //             });
-    //             wx.ready(function() {
-    //                 var shareData = {
-    //                     title: data.title,
-    //                     desc: data.desc,
-    //                     link: data.url,
-    //                     imgUrl: data.imgUrl
-    //                 };
-    //                 wx.onMenuShareAppMessage(shareData);
-    //                 wx.onMenuShareTimeline(shareData);
-    //             });
-    //         },
-    //         error: function(data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
-    </script>
-    
-    
-    <script src="js/main.js"></script><script src="js/m_audio.js"></script>
+    <div id="new_article_v1" style="display:none"></div>
+    <script src="js/m_audio.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

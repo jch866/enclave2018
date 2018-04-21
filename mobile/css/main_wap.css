@@ -49,7 +49,7 @@ animation:top15 2.5s ease  infinite;
 .mdetail_head .down_btn .download{ width: 58px;margin-right: 20px;}
 .mdetail_head .down_btn .downApp{width: 56px;text-align: center; border: 1px solid #404146;border-radius: 4px;color: #404146;}
 
-.m_artList,.m_recommend,.mp3_box,.m_comment,.m_probation{padding: 0 16px;}
+.m_artList,.m_recommend,.mp3_box,.m_comment,.m_preview{padding: 0 16px;}
 .m_artList li,.m_recommend li{display: flex; margin-top:16px; }
 .m_artList li div.imgWrap,.m_recommend li div.imgWrap{width: 100px;height: 100px;overflow: hidden; }
 .m_artList li img,.m_recommend li img{width: 133px;height: 100px;transform: translateX(-16px)}
@@ -106,18 +106,17 @@ font-size: 1.4rem; color: #fff;}
 #articleCon .m_special_title span{display: inline-block;font-size: 14px;color: #CBCBCB;line-height: 22px;margin:0;}
 
 /*article_special page read*/
-.m_probation_list li{ display: flex; max-height: 90px; overflow: hidden;padding: 15px 0; border-bottom:1px solid #C8C7CC;  }
-.m_probation_list li .summary{flex:1;}
-.m_probation_list li .summary h4{font-size: 1.6rem;color: #000000;margin-bottom: 6px; }
-.m_probation_list li .summary p{font-size: 1.3rem;color: #8B8687;line-height: 18px;}
-.m_probation_list li .thumbnail{width: 90px;height: 90px;margin-left: 10px;}
-.m_probation_list li .thumbnail img{width:100%;height: 100%; border-radius: 5px;}
-.m_probation_list li:last-child{border-bottom: none;}
+.m_preview_list li{ display: flex; max-height: 90px; overflow: hidden;padding: 15px 0; border-bottom:1px solid #C8C7CC;  }
+.m_preview_list li .summary{flex:1;}
+.m_preview_list li .summary h4{font-size: 1.6rem;color: #000000;margin-bottom: 6px; }
+.m_preview_list li .summary p{font-size: 1.3rem;color: #8B8687;line-height: 18px;}
+.m_preview_list li .thumbnail{width: 90px;height: 90px;margin-left: 10px;}
+.m_preview_list li .thumbnail img{width:100%;height: 100%; border-radius: 5px;}
+.m_preview_list li:last-child{border-bottom: none;}
 
 .lock_tip{text-align: center;padding-top: 30px;}
 .lock_tip img{width:36px; height: 36px;}
-.lock_tip .buy_text{text-align: center;font-size: 1.2rem;line-height: 28px;}
-.lock_tip .buy_text a{color: #8B8687;}
+.lock_tip .buy_text{text-align: center;font-size: 1.2rem;line-height: 28px;color: #8B8687;}
 
 .lock_owner{padding:15px 0 20px 0;margin:20px 16px; border-bottom:1px solid #C8C7CC; border-top:1px solid #C8C7CC; }
 .lock_owner .title{font-size: 1.4rem;color: #51ADCF;letter-spacing: 1px;line-height: 26px;padding-bottom: 5px;}

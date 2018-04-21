@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>飞地 - 文艺青年的高品质文学艺术阅读社区</title>
@@ -15,37 +14,16 @@
     <!-- <link rel="stylesheet" href="css/query_wap.css"> -->
     <script src="js/jquery-3.1.0.min.js"></script>
 </head>
-
+<script>
+    window.onload=function(){
+        setTimeout(function(){
+            window.location.href = 'index.html';
+        },2000)
+    }
+</script>
 <body>
 
-  <div class="page_error">文章已进入太空</div> 
-
-
-    <!--
-        注意：该模板应该在文章正文的最外层，外层不应该再包含多余的p标签。
-        后台编辑器设置data-id应该为飞地之声的表id，用户编辑器把data-id设置为url就行了; 
-        data-url为音频的流播放地址; 
-        data-original-url为音频原始的地址，用于音频下载；
-        data-duration为音频时长，以上字段均用String类型；
-    -->
-    <!-- 对于两个img，各端均以相对路径加载显示 -->
-    <!-- EnclaveAudio.onXXX为音频事件处理  -->
-    <!-- <p class='el-audio' data-id='4' 
-    data-url='https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3' 
-    data-original-url='https://source.enclavebooks.cn/57cc74d71fa4f1e662866981bd3e40da.mp3'
-    data-duration='109' >
-        <img class='el-audio-play' src='audio_play.png' onclick='EnclaveAudio.onPlay(event)'> -->
-        <!-- 这里也是data-duration，格式为MM:SS -->
-       <!--  <span class='el-audio-duration'>01:49</span>
-        <img class='el-audio-delete' src='audio_delete.png' onclick='EnclaveAudio.onDelete(event)'>
-    </p> -->
-    <script>
-    window.onload=function(){
-        
-    }
+  <div class="page_error">文章已进入太空……</div> 
     
-    </script>
-    <script src="js/main.min.js"></script>
 </body>
-
 </html>

@@ -1,6 +1,7 @@
 $(function(){
 function m_audio(cfg){
 	this.allAudio_P=cfg.sel;
+    if(this.allAudio_P.length===0)return;
 	this.currentAudio='';
 	this.currentAudioJS='';
 	this.currentAudioId='';
