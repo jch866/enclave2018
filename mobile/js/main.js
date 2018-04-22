@@ -53,9 +53,9 @@ $(function() {
         specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=9',
         article: 'http://test.enclavebooks.cn/v2/shareArticle?id=253',
     };
-    var article_v1 = [{ id: 'new_article_v1', url: url.article, hasCB: true },
-        { id: 'special_aritcle_v1', url: url.specialarticle, hasCB: true },
-        { id: 'special_v1', url: url.special, hasCB: true }
+    var article_v1 = [{ id: 'new_article_v1', url: url.article},
+        { id: 'special_aritcle_v1', url: url.specialarticle},
+        { id: 'special_v1', url: url.special}
     ];
     article_v1.forEach(function(item) {
         $('#' + item.id).length > 0 && getRes_v1(item);
@@ -496,7 +496,6 @@ $(function() {
         } else {
             window.location.href = downurl.index ;
         }
-        console.log(device)
     }
     downApp && downApp.on('click', function(e) {
         e.preventDefault();
@@ -512,8 +511,7 @@ $(function() {
     function getRes_v1(item) {
         $('#'+item.id).show().addClass('loadingBg');
         $.get(item.url, function(data) {
-            var obj = { id: item.id, data: data };
-            if (item.hasCB) { obj.callback = afterRender }
+            var obj = { id: item.id,data:data,callback:afterRender};
             if (data.code == 200) {
                 new enclave_rt(obj);
                 $('#'+item.id).hide().removeClass('loadingBg');
