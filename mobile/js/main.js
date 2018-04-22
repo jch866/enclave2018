@@ -374,13 +374,21 @@ $(function() {
             //$(window).height()  safari有BUG
         })
         mask.fadeIn(100);
+        mask.parent().addClass('scrollLimit')
         doc.on("touchmove", function(e) {
-            e.preventDefault();
+             if (e.cancelable) {
+                // 判断默认行为是否已经被禁用
+                if (!e.defaultPrevented) {
+                    e.preventDefault();
+                }
+            }
+           // e.preventDefault();
         });
     }
 
     function hideMask() {
         mask.fadeOut(100);
+        mask.parent().removeClass('scrollLimit')
         doc.off("touchmove");
     }
     mWeChat.on('click', function() {

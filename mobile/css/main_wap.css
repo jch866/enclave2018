@@ -9,6 +9,7 @@ html {font-size: 62.5%;}
     text-align: center; width:100%;line-height: 50px;height: 50px;font-size: 14px;}
 .qrCode{ width: 200px;height: 200px;position:absolute;margin:auto;left: 0;top: 0; right: 0; bottom: 0;z-index: 10;background: #fff;}
 .qrCode img{width: 200px;height: 200px;z-index: 11; left: 0;top: 0;}
+.scrollLimit{overflow: hidden;height: 100%;}
 /* .qrCode .text{height: auto;line-height: 1.5;padding: 0 15px;font-size: 14px;color: #404146;}
 .qrCode .text span{color: #F05D4D;} */
 /* 标题和下载图标居中时 */
@@ -91,7 +92,7 @@ box-shadow: 0 0 0 0 rgba(0,0,0,0.30);border-image: /* linear-gradient( #C8C7CC, 
 font-size: 1.4rem; color: #fff;}
 .m_subscribe_bar .price{flex: 1;font-size: 1.6rem;color: #BA5162;padding-left: 20px;}
 .m_subscribe_bar .price del{margin-left: 10px;font-size: 12px;color: #B2B2B2;}
-.m_subscribe_bar .order{width: 118px;text-align: center;background: #404146;}
+.m_subscribe_bar .order{width: 118px;font-size: 1.6rem;text-align: center;background: #404146;}
 
 /*error page css*/
 .page_error{
