@@ -50,9 +50,9 @@ $(function() {
         ad: 'https://app.enclavebooks.cn/v1_4/article?', //article detail
         ar: 'https://app.enclavebooks.cn/v1_4/recommend', //article random  随机三篇
         homepage: 'https://app.enclavebooks.cn',
-        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=1',
-        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=9',
-        article: 'http://test.enclavebooks.cn/v2/shareArticle?id=253',
+        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=',
+        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=',
+        article: 'http://test.enclavebooks.cn/v2/shareArticle?id=',
     };
     var article_v1 = [{ id: 'new_article_v1', url: url.article },
         { id: 'special_aritcle_v1', url: url.specialarticle },
@@ -510,61 +510,77 @@ $(function() {
 
     //新版 通用请求api
     function getRes_v1(item) {
+        var url = window.location.href;
+        var id = url.split("?")[1].split("=")[1];
         $('#' + item.id).show().addClass('loadingBg');
-        $.get(item.url, function(data) {
-            var obj = { id: item.id, data: data, callback: afterRender };
-            if (data.code == 200) {
-                new enclave_rt(obj);
-                $('#' + item.id).hide().removeClass('loadingBg');
-            } else {
-                window.location.href = 'error.html';
-            }
-        })
-    }
-    //从后台读取完文件后再操作新的DOM
-    function afterRender() {
-        new m_audio({ sel: $('.el-audio') });
-        otherOperate_v1();
-    }
-
-    function otherOperate_v1() {
-        var mart_head = $('.mdetail_head');
-        var downApp = $('#downApp'); //顶部直接下载
-        var lock_buy = $('#lock_buy'); //有锁的地方
-        var order_buy = $('#order_buy'); //专栏订阅
-        var openApp = $('#openApp'); //打开
-        (mart_head.length != 0) && scrollFixed(mart_head);
-        (downApp.length != 0) && downApp.on('click', function(e) {
-            e.preventDefault();
-            downLoad();
+        $.ajax({
+                url: item.url + id,
+                type: 'GET',
+                timeout: 5000,
+                error: function() {
+                    setTimeout(function(){
+                        window.location.href = 'error.html';
+                    },2000)
+                },
+                success: function(data) {
+                    var obj = { id: item.id, data: data, callback: afterRender };
+                    if (!data) {
+                        window.location.href = 'error.html';
+                        return
+                    }
+                    if (data.code == 200) {
+                        new enclave_rt(obj);
+                        $('#' + item.id).hide().removeClass('loadingBg');
+                    } else {
+                        window.location.href = 'error.html';
+                    }
+                }
         });
-        (lock_buy.length != 0) && lock_buy.on('click', function(e) {
-            e.preventDefault();
-            downLoad();
-        });
-        (order_buy.length != 0) && order_buy.on('click', function(e) {
-            e.preventDefault();
-            downLoad();
-        });
-        (openApp.length != 0) && openApp.on('click', function(e) {
-            applink();
-        })
+}
+//从后台读取完文件后再操作新的DOM
+function afterRender() {
+    new m_audio({ sel: $('.el-audio') });
+    otherOperate_v1();
+}
 
-    }
+function otherOperate_v1() {
+    var mart_head = $('.mdetail_head');
+    var downApp = $('#downApp'); //顶部直接下载
+    var lock_buy = $('#lock_buy'); //有锁的地方
+    var order_buy = $('#order_buy'); //专栏订阅
+    var openApp = $('#openApp'); //打开
+    (mart_head.length != 0) && scrollFixed(mart_head);
+    (downApp.length != 0) && downApp.on('click', function(e) {
+        e.preventDefault();
+        downLoad();
+    });
+    (lock_buy.length != 0) && lock_buy.on('click', function(e) {
+        e.preventDefault();
+        downLoad();
+    });
+    (order_buy.length != 0) && order_buy.on('click', function(e) {
+        e.preventDefault();
+        downLoad();
+    });
+    (openApp.length != 0) && openApp.on('click', function(e) {
+        applink();
+    })
 
-    function applink() {
-        var device = devicePlatform();
-        if (device == 'iOS') {
-            setTimeout(function() {
-                window.location.href = downurl.iOS
-                window.location.href = downurl.iOS
-            }, 2000)
-        } else if (device == 'Android') {
-            setTimeout(function() {
-                window.location.href = downurl.android;
-            }, 2000)
-        }
+}
+
+function applink() {
+    var device = devicePlatform();
+    if (device == 'iOS') {
+        setTimeout(function() {
+            window.location.href = downurl.iOS
+            window.location.href = downurl.iOS
+        }, 2000)
+    } else if (device == 'Android') {
+        setTimeout(function() {
+            window.location.href = downurl.android;
+        }, 2000)
     }
+}
 
 
 });
