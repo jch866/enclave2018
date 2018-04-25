@@ -509,6 +509,9 @@ $(function() {
     function getRes_v1(item) {
         var url = window.location.href;
         var id = url.split("?")[1].split("=")[1];
+        if(id.indexOf('&')!=-1){
+            id = id.split("&")[0];
+        }
         $('#' + item.id).show().addClass('loadingBg');
         $.ajax({
                 url: item.url + id,
