@@ -502,10 +502,7 @@ $(function() {
         e.preventDefault();
         downLoad();
     })
-    openApp && openApp.on('click', function(e) {
-        //downLoad()
-    })
-
+   
     // 文章详情新版本 增加JS
 
     //新版 通用请求api
@@ -563,19 +560,25 @@ function otherOperate_v1() {
         downLoad();
     });
     (openApp.length != 0) && openApp.on('click', function(e) {
-        applink();
+        applink(e);
     })
 
 }
 
-function applink() {
+function applink(e) {
+    var path = e.target.href;
     var device = devicePlatform();
+    if (device == 'iOS_wechat') {
+        e.preventDefault();
+        showMask();
+        return;
+    }
+    window.location.href = e.target.href;
     if (device == 'iOS') {
         setTimeout(function() {
             window.location.href = downurl.iOS
-            window.location.href = downurl.iOS
         }, 2000)
-    } else if (device == 'Android') {
+    } else if (device == 'Android'|| device == 'Android_wechat') {
         setTimeout(function() {
             window.location.href = downurl.android;
         }, 2000)
