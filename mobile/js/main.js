@@ -21,6 +21,7 @@ $(function() {
         android: 'http://a.app.qq.com/o/simple.jsp?pkgname=cn.enclavemedia.app&from=singlemessage',
         index: 'index.html'
     };
+    var v1_id = '';
     var delay = 60 * 60 * 3 * 1000; //3小时缓存机制
     var cache = { aL: 'artList', aLT: 'artList_time' };
     var len1 = 6,
@@ -512,6 +513,7 @@ $(function() {
         if(id.indexOf('&')!=-1){
             id = id.split("&")[0];
         }
+        v1_id = id;
         $('#' + item.id).show().addClass('loadingBg');
         $.ajax({
                 url: item.url + id,
@@ -563,10 +565,37 @@ function otherOperate_v1() {
         downLoad();
     });
     (openApp.length != 0) && openApp.on('click', function(e) {
-        applink(e);
+        //applink(e);
+        openclient(e)
     })
 
 }
+
+function openclient(e) {
+    var ua = navigator.userAgent.toLowerCase();
+    var startTime = Date.now();
+    var ifr = document.createElement('iframe');
+    ifr.src = e.target.href;
+    ifr.style.display = 'none';
+    document.body.appendChild(ifr);
+    var t = setTimeout(function() {
+        var endTime = Date.now();
+        //指定的时间内没有跳转成功 当前页跳转到apk的下载地址
+        if ((endTime - startTime) < (2200)) {
+            if (/iphone|ipad|ipod/.test(ua)) {
+                window.location.href = downurl.iOS;
+            } else if (/android/.test(ua)) {
+                window.location.href = downurl.android;
+            }
+        } else {
+            window.close();
+        }
+    }, 2000);
+    window.onblur = function() {
+        clearTimeout(t);
+    }
+}
+
 
 function applink(e) {
     var path = e.target.href;
@@ -754,6 +783,7 @@ $(function() {
     };
     renderTemplate.prototype._v1_article_comment = function(d) {
         var data = d.result.comment;
+        if(!data)return;
         var self = this;
         var wrap = '<div class="commentBox"><div class="m_comment">' +
             '<h1>最新评论</h1><ul class="m_comment_list"></ul>' +
