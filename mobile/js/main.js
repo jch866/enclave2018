@@ -791,6 +791,7 @@ $(function() {
         this.body.append($(wrap));
         var comment = this.body.find('.m_comment_list');
         $.each(data, function(index, item) {
+            item.avatar = item.avatar?item.avatar:'img/default_avatar.png';
             var str = '<li>' +
                 '<div class="m_header avatar_wrap">' +
                 '<span class="avatar"><img src="' + item.avatar + '" alt=""></span>' +
