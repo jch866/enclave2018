@@ -44,6 +44,7 @@ $(function() {
             window.localStorage.removeItem[key];
         },
     };
+    var v1_api_url = 'http://test.enclavebooks.cn/v2';
     var selfCacheData = util.supports_ls() ? util.getls(cache.aL) : false;
     var lsTime = util.supports_ls() ? (util.getls(cache.aLT) - 0) : false;
     var url = {
@@ -51,9 +52,9 @@ $(function() {
         ad: 'https://app.enclavebooks.cn/v1_4/article?', //article detail
         ar: 'https://app.enclavebooks.cn/v1_4/recommend', //article random  随机三篇
         homepage: 'https://app.enclavebooks.cn',
-        special: 'http://test.enclavebooks.cn/v2/shareSpecial?id=',
-        specialarticle: 'http://test.enclavebooks.cn/v2/shareSpecialArticle?id=',
-        article: 'http://test.enclavebooks.cn/v2/shareArticle?id=',
+        special: v1_api_url+'/shareSpecial?id=',
+        specialarticle: v1_api_url+'/shareSpecialArticle?id=',
+        article: v1_api_url+'/shareArticle?id=',
     };
     var article_v1 = [{ id: 'new_article_v1', url: url.article },
         { id: 'special_aritcle_v1', url: url.specialarticle },
@@ -780,7 +781,7 @@ $(function() {
             '<div class="name blue">' + data.artEditor + '</div>' +
             '<div class="time">' + timeStr + '</div>' +
             '</span>' +
-            '</div>' + data.artContent.replace(/\/ueditor\/php/g, (self.homepage + "/ueditor/php"));
+            '</div>' + data.artContent;
         self.settings.articleBody.append($(str));
     };
     renderTemplate.prototype._v1_article_comment = function(d) {
