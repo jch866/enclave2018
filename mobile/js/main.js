@@ -687,6 +687,7 @@ $(function() {
     renderTemplate.prototype._v1_specialArt_body = function(d) {
         var data = d.result;
         var self = this;
+        var timeStr = data.artTime==0?'':self.format(data.artTime * 1000);
         var str = '<img src="' + data.artThumb + '" alt="">' +
             '<h1>' + data.artTitle + '</h1>' +
             '<div class="avatar_wrap">' +
@@ -695,7 +696,7 @@ $(function() {
             '</span>' +
             '<span class="profile">' +
             '<div class="name blue">' + data.artEditor + '</div>' +
-            '<div class="time">' + self.format(data.artTime * 1000) + '</div>' +
+            '<div class="time">' + timeStr + '</div>' +
             '</span>' +
             '</div>' + data.artDescription;
         '</div>';
@@ -769,6 +770,7 @@ $(function() {
     renderTemplate.prototype._v1_article_body = function(d) {
         var data = d.result.article;
         var self = this;
+        var timeStr = data.artTime==0?'':self.format(data.artTime * 1000);
         var str = '<img src="' + data.artThumb + '" alt=""><h1>' + data.artTitle + '</h1>' +
             '<div class="avatar_wrap">' +
             '<span class="avatar">' +
@@ -776,7 +778,7 @@ $(function() {
             '</span>' +
             '<span class="profile">' +
             '<div class="name blue">' + data.artEditor + '</div>' +
-            '<div class="time">' + self.format(data.artTime * 1000) + '</div>' +
+            '<div class="time">' + timeStr + '</div>' +
             '</span>' +
             '</div>' + data.artContent.replace(/\/ueditor\/php/g, (self.homepage + "/ueditor/php"));
         self.settings.articleBody.append($(str));
