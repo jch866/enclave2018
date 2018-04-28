@@ -714,6 +714,8 @@ $(function() {
         //this.settings.articleBody.append($(specialWrap));
         this.body.append($(specialWrap));
         var specialOwner = this.body.find('.specialOwner');
+        var priceStr = !data.afterDiscountPrice?'<span class="lf_price">' + data.originalPrice + '飞币</span>':'<span class="lf_price">' + data.afterDiscountPrice + '飞币<del>' + data.originalPrice + '飞币</del></span>';
+        var nameStr = !data.authorName?'':data.authorName;
         var str = '<div class="l_thumb">' +
             '<img src="' + data.thumb + '" alt="">' +
             '</div>' +
@@ -721,8 +723,7 @@ $(function() {
             '<h4>' + data.title + '</h4>' +
             '<p>' + data.intro.slice(0, 50) + '</p>' +
             '<div class="l_foot">' +
-            '<span class="lf_name">' + data.authorName + '</span>' +
-            '<span class="lf_price">' + data.afterDiscountPrice + '飞币<del>' + data.originalPrice + '飞币</del></span>' +
+            '<span class="lf_name">' + nameStr + '</span>' + priceStr +
             '</div>' +
             '</div>';
         specialOwner.append($(str));
@@ -742,6 +743,7 @@ $(function() {
     };
     renderTemplate.prototype._v1_special_preview = function(d) {
         var data = d.result.special.preview;
+        if(!data||data.length === 0) return;
         var self = this;
         var wrap = '<div class="commentBox"><div class="m_preview"><h1>试读</h1><ul class="m_preview_list"></ul></div></div>';
         this.body.append($(wrap));
@@ -761,8 +763,8 @@ $(function() {
     };
     renderTemplate.prototype._v1_special_subscribe = function(d) {
         var data = d.result.special;
-        var str = '<div class="m_subscribe_bar">' +
-            '<div class="price">' + data.afterDiscountPrice + '飞币<del>' + data.originalPrice + '飞币</del></div>' +
+        var priceStr = !data.afterDiscountPrice?'<div class="price">' + data.originalPrice + '飞币</div>':'<div class="price">' + data.afterDiscountPrice + '飞币<del>' + data.originalPrice + '飞币</del></div>';
+        var str = '<div class="m_subscribe_bar">' +priceStr+
             '<div class="order" id="order_buy">订阅</div>' +
             '</div>';
         this.body.append($(str));
@@ -781,7 +783,7 @@ $(function() {
             '<div class="name blue">' + data.artEditor + '</div>' +
             '<div class="time">' + timeStr + '</div>' +
             '</span>' +
-            '</div>' + data.artContent;
+            '</div>' + data.artContent.replace(/\/ueditor\/php/g, (self.settings.homepage + "/ueditor/php"));
         self.settings.articleBody.append($(str));
     };
     renderTemplate.prototype._v1_article_comment = function(d) {
