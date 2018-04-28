@@ -558,8 +558,7 @@ function otherOperate_v1() {
         downLoad();
     });
     (lock_buy.length != 0) && lock_buy.on('click', function(e) {
-        e.preventDefault();
-        downLoad();
+        openclient(e)
     });
     (order_buy.length != 0) && order_buy.on('click', function(e) {
         e.preventDefault();
@@ -658,19 +657,8 @@ $(function() {
     renderTemplate.prototype._v1_header = function(d) {
         var data = d.result;
         var currentPage = this.settings.id;
-        var id = '';
-        if (currentPage === 'new_article_v1') {
-            id = data.article.artId
-        } else if (currentPage === 'special_v1') {
-            id = data.special.id
-        } else if (currentPage === 'special_aritcle_v1') {
-            id = data.artId
-        }
-        var link = {
-            new_article_v1: 'enclave://article?id=' + id,
-            special_v1: 'enclave://_special?id=' + id,
-            special_aritcle_v1: 'enclave://special_article?id=' + id
-        }
+        var self = this;
+        var link = self._returnLink(currentPage,data);
         var str = '<header class="mdetail_head">' +
             '<div class="head_wrap">  ' +
             '<div class="art_logo">' +
@@ -688,6 +676,8 @@ $(function() {
     renderTemplate.prototype._v1_specialArt_body = function(d) {
         var data = d.result;
         var self = this;
+        var currentPage = this.settings.id;
+        var link = self._returnLink(currentPage,data);
         var timeStr = data.artTime==0?'':self.format(data.artTime * 1000);
         var str = '<img src="' + data.artThumb + '" alt="">' +
             '<h1>' + data.artTitle + '</h1>' +
@@ -702,7 +692,7 @@ $(function() {
             '</div>' + data.artDescription;
         '</div>';
         var lock = '<div class="lock_tip" id="lock_buy">' +
-            '<div class="img"><img src="img/unlock.svg" alt=""></div>' +
+            '<div class="img"><a href="' + link[currentPage] + '"><img src="img/unlock.svg" alt=""></a></div>' +
             '<div class="buy_text">购买专栏阅读剩余内容</div>' +
             '</div>';
         self.settings.articleBody.append($(str));
@@ -809,6 +799,22 @@ $(function() {
                 '</li>'
             comment.append($(str));
         })
+    };
+    renderTemplate.prototype._returnLink = function(currentPage,data) {
+        var id = '';
+        if (currentPage === 'new_article_v1') {
+            id = data.article.artId
+        } else if (currentPage === 'special_v1') {
+            id = data.special.id
+        } else if (currentPage === 'special_aritcle_v1') {
+            id = data.artId
+        }
+        var link = {
+            new_article_v1: 'enclave://article?id=' + id,
+            special_v1: 'enclave://_special?id=' + id,
+            special_aritcle_v1: 'enclave://special_article?id=' + id
+        }
+        return link;
     };
     renderTemplate.prototype.format = function(seconds) {
         //seconds是整数，否则要parseInt转换
